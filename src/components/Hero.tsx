@@ -22,7 +22,7 @@ export function Hero() {
 
   return (
     <section className="flex justify-center bg-charcoal">
-      <div className="relative flex h-screen w-full flex-col items-center justify-between overflow-hidden px-6 py-16 text-center lg:max-w-[80vw]">
+      <div className="relative flex h-dvh w-full flex-col items-center justify-between overflow-hidden px-6 py-16 text-center lg:max-w-[80vw]">
         {weddingConfig.heroImages.map((src, index) => {
           const isActive = index === activeImage;
           return (

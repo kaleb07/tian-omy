@@ -21,6 +21,23 @@ function chunkColumns(images: GalleryImage[]) {
   return columns;
 }
 
+function animateScrollBy(node: HTMLDivElement, delta: number, duration = 400) {
+  const start = node.scrollLeft;
+  const startTime = performance.now();
+
+  function step(now: number) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    node.scrollLeft = start + delta * eased;
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
 function ArrowIcon({ direction }: { direction: "left" | "right" }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
@@ -86,7 +103,7 @@ export function Gallery() {
     resumeTimeoutRef.current = setTimeout(resume, 1500);
 
     const amount = node.clientWidth * 0.6;
-    node.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
+    animateScrollBy(node, direction === "left" ? -amount : amount);
   }
 
   function pause() {
