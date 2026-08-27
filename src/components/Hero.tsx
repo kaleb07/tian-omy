@@ -10,10 +10,12 @@ const HERO_IMAGE_INTERVAL_MS = 5000;
 
 export function Hero() {
   const [activeImage, setActiveImage] = useState(0);
+  const [cycle, setCycle] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
       setActiveImage((prev) => (prev + 1) % weddingConfig.heroImages.length);
+      setCycle((c) => c + 1);
     }, HERO_IMAGE_INTERVAL_MS);
     return () => clearInterval(id);
   }, []);
@@ -21,18 +23,25 @@ export function Hero() {
   return (
     <section className="flex justify-center bg-charcoal">
       <div className="relative flex h-screen w-full flex-col items-center justify-between overflow-hidden px-6 py-16 text-center lg:max-w-[80vw]">
-        {weddingConfig.heroImages.map((src, index) => (
-          <Image
-            key={src}
-            src={src}
-            alt=""
-            fill
-            priority={index === 0}
-            className={`object-cover transition-opacity duration-1000 ease-in-out ${
-              index === activeImage ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
+        {weddingConfig.heroImages.map((src, index) => {
+          const isActive = index === activeImage;
+          return (
+            <Image
+              key={isActive ? `${src}-${cycle}` : src}
+              src={src}
+              alt=""
+              fill
+              priority={index === 0}
+              className={`object-cover ${isActive ? "opacity-100" : "opacity-0"}`}
+              style={{
+                transition: "opacity 1200ms ease-in-out",
+                animation: isActive
+                  ? `hero-zoom-out ${HERO_IMAGE_INTERVAL_MS}ms linear forwards`
+                  : "none",
+              }}
+            />
+          );
+        })}
         <div className="absolute inset-0 bg-linear-to-b from-charcoal/70 via-charcoal/50 to-charcoal/70" />
 
         {/* <FadeIn className="relative">

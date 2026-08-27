@@ -38,7 +38,7 @@ export function Gift() {
           <FadeIn key={account.accountNumber}>
             <div className="flex flex-col gap-4 rounded-2xl bg-linear-to-br from-ivory to-ivory-soft p-6 shadow-lg">
               <div className="flex items-start justify-between">
-                <p className="flex items-center gap-1.5 text-xs font-semibold tracking-[0.2em] text-charcoal/50 uppercase">
+                <p className="flex items-center gap-2 text-base font-bold tracking-[0.2em] text-gold uppercase">
                   <SparkleIcon />
                   Bank {account.bank}
                 </p>

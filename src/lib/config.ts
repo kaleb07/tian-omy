@@ -22,16 +22,16 @@ export type GalleryImage = {
 export const weddingConfig = {
   groom: {
     name: "Tian",
-    fullName: "Tian [Nama Lengkap]",
-    parents: "Putra dari Bapak [Nama Ayah] & Ibu [Nama Ibu]",
-    photo: "/couple/groom.jpg",
+    fullName: "Kristian Dwi Hartono Putro",
+    parents: "Putra dari Bapak Djoko Soehartono Putro & Ibu Sri Soeryani",
+    photo: "/selfie/groom-v2.JPG",
     instagram: "https://www.instagram.com/kristiandwihp?igsi=MTBrbGx5eDNrajhoZg==",
   },
   bride: {
     name: "Omy",
-    fullName: "Omy [Nama Lengkap]",
-    parents: "Putri dari Bapak [Nama Ayah] & Ibu [Nama Ibu]",
-    photo: "/couple/bride.jpg",
+    fullName: "Naomy Simanungkalit",
+    parents: "Putri dari Bapak Sintong Simanungkalit & Ibu Hertaida Siburian",
+    photo: "/selfie/bride.JPG",
     instagram: "https://www.instagram.com/omykalit?igsi=MWhvOXJsZGlxbTh6aw==",
   },
 
@@ -53,6 +53,13 @@ export const weddingConfig = {
     "/hero/BUD08507.jpg",
   ],
 
+  backgroundImages: [
+    "/background/BUD07941-Edit.jpg",
+    "/background/BUD08564.jpg",
+    "/background/BUD08745-Edit.jpg",
+    "/background/BUD09046-Edit.jpg",
+  ],
+
   gallery: [
     { src: "/gallery/BUD08667.jpg", alt: "Foto 1" },
     { src: "/gallery/BUD08745-Edit.jpg", alt: "Foto 2" },
@@ -65,13 +72,12 @@ export const weddingConfig = {
   ] satisfies GalleryImage[],
 
   bankAccounts: [
-    { bank: "BCA", accountNumber: "1234567890", accountHolder: "Tian" },
-    { bank: "Mandiri", accountNumber: "0987654321", accountHolder: "Omy" },
+    { bank: "BNI", accountNumber: "0348774139", accountHolder: "Naomy Simanungkalit" },
   ] satisfies BankAccount[],
 
   music: {
-    enabled: false,
-    src: "/audio/music.mp3",
+    enabled: true,
+    src: "/audio/music.mpeg",
   },
 
   rsvpApiPath: "/api/rsvp",

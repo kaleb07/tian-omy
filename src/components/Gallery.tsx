@@ -40,6 +40,7 @@ export function Gallery() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const images = weddingConfig.gallery;
   const columns = chunkColumns(images);
   const loopColumns = [...columns, ...columns];
@@ -79,6 +80,11 @@ export function Gallery() {
   function scrollByColumn(direction: "left" | "right") {
     const node = scrollerRef.current;
     if (!node) return;
+
+    pause();
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(resume, 1500);
+
     const amount = node.clientWidth * 0.6;
     node.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
   }
@@ -103,23 +109,38 @@ export function Gallery() {
     <section className="flex flex-col items-center gap-10 px-6 py-20">
       <div className="flex flex-col items-center gap-3 text-center">
         <FadeIn>
-          <h2 className="font-display text-3xl italic text-charcoal">{copy.gallery.title}</h2>
+          <h2
+            className="font-display text-4xl italic text-ivory sm:text-5xl"
+            style={{
+              textShadow:
+                "0 0 6px var(--color-gold), 0 0 10px var(--color-gold), 0 0 18px var(--color-gold), 0 1px 2px var(--color-gold)",
+            }}
+          >
+            {copy.gallery.title}
+          </h2>
         </FadeIn>
         <FadeIn>
-          <p className="text-sm text-charcoal/70">{copy.gallery.subtitle}</p>
+          <p
+            className="text-base text-ivory sm:text-lg"
+            style={{
+              textShadow:
+                "0 0 6px var(--color-gold), 0 0 10px var(--color-gold), 0 0 18px var(--color-gold), 0 1px 2px var(--color-gold)",
+            }}
+          >
+            {copy.gallery.subtitle}
+          </p>
         </FadeIn>
       </div>
 
       <FadeIn className="w-full max-w-5xl">
-        <div
-          onMouseEnter={pause}
-          onMouseLeave={resume}
-          onTouchStart={pause}
-          onTouchEnd={resume}
-        >
+        <div>
           <div
             ref={scrollerRef}
             onScroll={updateProgress}
+            onMouseEnter={pause}
+            onMouseLeave={resume}
+            onTouchStart={pause}
+            onTouchEnd={resume}
             className="no-scrollbar flex w-full gap-3 overflow-x-auto pb-2"
           >
             {loopColumns.map((column, columnIndex) => {
@@ -163,7 +184,7 @@ export function Gallery() {
               type="button"
               aria-label="Sebelumnya"
               onClick={() => scrollByColumn("left")}
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold-light/60 text-charcoal/70 transition-colors hover:border-gold hover:text-gold"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold-light/60 bg-ivory text-gold shadow-sm transition-colors hover:bg-gold hover:text-ivory"
             >
               <ArrowIcon direction="left" />
             </button>
@@ -179,7 +200,7 @@ export function Gallery() {
               type="button"
               aria-label="Berikutnya"
               onClick={() => scrollByColumn("right")}
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold-light/60 text-charcoal/70 transition-colors hover:border-gold hover:text-gold"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold-light/60 bg-ivory text-gold shadow-sm transition-colors hover:bg-gold hover:text-ivory"
             >
               <ArrowIcon direction="right" />
             </button>

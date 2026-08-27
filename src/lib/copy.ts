@@ -62,7 +62,7 @@ export const copy = {
   },
   gift: {
     title: "Wedding Gift",
-    subtitle: "Kehadiran dan doa restu Anda sudah menjadi hadiah yang sangat berharga bagi kami. Apabila berkenan berbagi tanda kasih, informasi hadiah digital tersedia melalui tombol berikut.",
+    subtitle: "Kehadiran anda merupakan kado terindah bagi kami. Jika ingin memberikan tanda kasih secara cashless, anda dapat mengirimkan melalui rekening berikut:",
     accountNumberLabel: "Nomor Rekening",
     copyButton: "Salin",
     copiedButton: "Tersalin",
