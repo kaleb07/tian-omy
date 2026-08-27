@@ -231,7 +231,7 @@ export function Gallery() {
             type="button"
             aria-label="Close"
             onClick={() => setActiveIndex(null)}
-            className="absolute right-6 top-6 text-2xl text-ivory"
+            className="absolute right-6 top-6 z-10 text-2xl text-ivory"
           >
             ×
           </button>
@@ -240,7 +240,7 @@ export function Gallery() {
             type="button"
             aria-label="Sebelumnya"
             onClick={showPreviousImage}
-            className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ivory/30 bg-charcoal/50 text-ivory transition-colors hover:bg-charcoal/70"
+            className="absolute left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ivory/30 bg-charcoal/50 text-ivory transition-colors hover:bg-charcoal/70"
           >
             <ArrowIcon direction="left" />
           </button>
@@ -249,7 +249,7 @@ export function Gallery() {
             type="button"
             aria-label="Berikutnya"
             onClick={showNextImage}
-            className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ivory/30 bg-charcoal/50 text-ivory transition-colors hover:bg-charcoal/70"
+            className="absolute right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ivory/30 bg-charcoal/50 text-ivory transition-colors hover:bg-charcoal/70"
           >
             <ArrowIcon direction="right" />
           </button>
