@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1800" viewBox="0 0 1200 1800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3B322C"/>
+      <stop offset="55%" stop-color="#5B4B3D"/>
+      <stop offset="100%" stop-color="#7A6650"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1800" fill="url(#bg)"/>
+  <g opacity="0.5" stroke="#D9C7A3" stroke-width="1.5" fill="none">
+    <rect x="60" y="60" width="1080" height="1680"/>
+    <rect x="76" y="76" width="1048" height="1648"/>
+  </g>
+  <g fill="none" stroke="#D9C7A3" stroke-width="2" opacity="0.7">
+    <path d="M600 760 C 560 700, 480 700, 460 760 C 440 820, 500 860, 600 940 C 700 860, 760 820, 740 760 C 720 700, 640 700, 600 760 Z"/>
+  </g>
+  <text x="600" y="1040" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" letter-spacing="8" fill="#EFE6D8">FOTO SAMPUL</text>
+  <text x="600" y="1080" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="16" letter-spacing="3" fill="#C9B79A">Ganti dengan foto pasangan</text>
+</svg>

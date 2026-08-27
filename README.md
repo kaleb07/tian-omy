@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tian & Omy — Wedding Invitation
 
-## Getting Started
+Single-page wedding invitation built with Next.js (App Router). Sections: cover
+(with personalized guest name), countdown, event details with map links,
+gallery, RSVP (attendance + message), and gift/bank info.
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Append `?to=Guest+Name`
+to personalize the cover greeting, e.g. `http://localhost:3000?to=Budi`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Editing content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Wedding details** (names, date, venues, bank accounts, gallery list):
+  [src/lib/config.ts](src/lib/config.ts)
+- **All on-page text** (Indonesian copy, labels, messages):
+  [src/lib/copy.ts](src/lib/copy.ts)
+- **Photos**: replace the placeholder SVGs in `public/gallery/` and
+  `public/cover.svg` with real JPG/PNG files, then update the paths in
+  `src/lib/config.ts`.
 
-## Learn More
+## RSVP backend (Google Apps Script)
 
-To learn more about Next.js, take a look at the following resources:
+The RSVP form posts to `/api/rsvp`, a Next.js route that forwards to a Google
+Apps Script Web App bound to your spreadsheet.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Open the spreadsheet: https://docs.google.com/spreadsheets/d/1sSYH5xI3x_JOSNgPmIOxD40LoL7HODR4WabPZKskJZI
+   — make sure it has two sheets: `attendance` (columns: Name, Attendance)
+   and `message` (columns: Name, Message).
+2. In the Sheet, go to **Extensions > Apps Script**.
+3. Delete any starter code and paste the contents of
+   [apps-script/Code.gs](apps-script/Code.gs).
+4. Click **Deploy > New deployment**.
+   - Type: **Web app**
+   - Execute as: **Me**
+   - Who has access: **Anyone**
+5. Authorize when prompted, then copy the deployment URL
+   (ends in `/exec`).
+6. Create `.env.local` in this project (copy from `.env.example`) and set:
+   ```
+   APPS_SCRIPT_URL=https://script.google.com/macros/s/XXXXXXXX/exec
+   ```
+7. Restart `npm run dev` (or redeploy on Vercel with the same env var set
+   under Project Settings > Environment Variables).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+If you ever edit `Code.gs`, you must create a **new deployment version**
+(Deploy > Manage deployments > Edit > New version) for changes to take effect.
 
-## Deploy on Vercel
+## Deploying to Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npx vercel
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Set `APPS_SCRIPT_URL` as an environment variable in the Vercel project
+settings (Production and Preview) before the RSVP form will work live.
