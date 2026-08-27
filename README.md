@@ -51,6 +51,10 @@ Apps Script Web App bound to your spreadsheet.
 If you ever edit `Code.gs`, you must create a **new deployment version**
 (Deploy > Manage deployments > Edit > New version) for changes to take effect.
 
+## Deploying to VPS
+
+Step-by-step (DNS Niagahoster, Nginx, PM2, SSL): [deploy.md](deploy.md).
+
 ## Deploying to Vercel
 
 ```bash
