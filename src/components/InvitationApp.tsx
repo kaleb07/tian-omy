@@ -47,6 +47,7 @@ export function InvitationApp() {
 
   function handleOpen() {
     setOpened(true);
+    window.scrollTo({ top: 0, behavior: "instant" });
     if (weddingConfig.music.enabled) {
       audioRef.current
         ?.play()
