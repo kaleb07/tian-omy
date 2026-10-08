@@ -77,7 +77,7 @@ export function GalleryV2() {
 
           <button
             type="button"
-            aria-label={copyV2.rsvp.prevButton}
+            aria-label={copyV2.gallery.prevButton}
             onClick={(e) => {
               e.stopPropagation();
               showPreviousImage();
@@ -89,7 +89,7 @@ export function GalleryV2() {
 
           <button
             type="button"
-            aria-label={copyV2.rsvp.nextButton}
+            aria-label={copyV2.gallery.nextButton}
             onClick={(e) => {
               e.stopPropagation();
               showNextImage();

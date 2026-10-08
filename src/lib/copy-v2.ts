@@ -70,6 +70,8 @@ export const copyV2 = {
   gallery: {
     title: "Gallery",
     subtitle: "Sepenggal cerita kami",
+    prevButton: "Foto sebelumnya",
+    nextButton: "Foto berikutnya",
   },
   gift: {
     title: "Wedding Gift",
