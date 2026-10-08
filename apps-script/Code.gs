@@ -2,7 +2,8 @@
  * RSVP backend for the wedding invitation.
  * Paste this into the Apps Script editor bound to the RSVP Google Sheet
  * (Extensions > Apps Script), then deploy as a Web App.
- * Expects one sheet: "message" (columns: Name, Message, Timestamp, Attendance).
+ * Expects one sheet: "message" (columns: Name, Message, Timestamp, Attendance,
+ * Guest Count — the last column is optional, only sent by the v2 RSVP form).
  */
 function doGet(e) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -34,6 +35,7 @@ function doPost(e) {
   var name = String(payload.name || "").trim();
   var attendance = String(payload.attendance || "").trim();
   var message = String(payload.message || "").trim();
+  var guestCount = Number(payload.guestCount) || "";
 
   if (!name || (attendance !== "Yes" && attendance !== "No" && attendance !== "Maybe")) {
     return jsonResponse({ ok: false, error: "Invalid payload" });
@@ -41,7 +43,7 @@ function doPost(e) {
 
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var messageSheet = ss.getSheetByName("message");
-  messageSheet.appendRow([name, message, new Date(), attendance]);
+  messageSheet.appendRow([name, message, new Date(), attendance, guestCount]);
 
   return jsonResponse({ ok: true });
 }

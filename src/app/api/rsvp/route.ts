@@ -4,6 +4,7 @@ type RsvpPayload = {
   name?: string;
   attendance?: "Yes" | "No" | "Maybe";
   message?: string;
+  guestCount?: number;
 };
 
 export async function POST(request: NextRequest) {
@@ -25,6 +26,10 @@ export async function POST(request: NextRequest) {
   const name = body.name?.trim();
   const attendance = body.attendance;
   const message = body.message?.trim() ?? "";
+  const guestCount =
+    typeof body.guestCount === "number" && body.guestCount > 0
+      ? Math.floor(body.guestCount)
+      : undefined;
 
   if (!name || (attendance !== "Yes" && attendance !== "No" && attendance !== "Maybe")) {
     return NextResponse.json(
@@ -37,7 +42,7 @@ export async function POST(request: NextRequest) {
     const upstream = await fetch(appsScriptUrl, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ name, attendance, message }),
+      body: JSON.stringify({ name, attendance, message, guestCount }),
     });
 
     const data = await upstream.json().catch(() => null);

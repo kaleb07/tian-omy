@@ -47,6 +47,25 @@ export const weddingConfig = {
     mapsUrl: "https://maps.app.goo.gl/LzJUkwyZtwNw4nGQ9",
   } satisfies EventDetail,
 
+  // Dipakai oleh desain v2 (src/components-v2), yang menampilkan dua acara terpisah.
+  ceremony: {
+    label: "Pemberkatan Nikah",
+    dateLabel: "Sabtu, 7 November 2026",
+    timeLabel: "09.00 WIB – Selesai",
+    venueName: "Gereja GSRI Sipitupitu",
+    venueAddress: "Narumonda VI, Siantar Narumonda, Toba, Sumatera Utara",
+    mapsUrl: "https://maps.app.goo.gl/LzJUkwyZtwNw4nGQ9",
+  } satisfies EventDetail,
+
+  reception: {
+    label: "Resepsi",
+    dateLabel: "Sabtu, 7 November 2026",
+    timeLabel: "11.30 WIB – Selesai",
+    venueName: "Gereja GSRI Sipitupitu",
+    venueAddress: "Narumonda VI, Siantar Narumonda, Toba, Sumatera Utara",
+    mapsUrl: "https://maps.app.goo.gl/LzJUkwyZtwNw4nGQ9",
+  } satisfies EventDetail,
+
   heroImages: [
     "/hero/BUD07950.jpg",
     "/hero/BUD08410.jpg",

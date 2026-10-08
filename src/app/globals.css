@@ -60,3 +60,12 @@ body {
     transform: scale(1);
   }
 }
+
+@keyframes zoom-in-pop {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
