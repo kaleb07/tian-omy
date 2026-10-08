@@ -45,7 +45,7 @@ export function CoupleV2() {
   return (
     <section
       id="couple"
-      className="flex h-screen shrink-0 snap-start flex-col items-center justify-center gap-8 overflow-y-auto bg-ivory px-6 py-12"
+      className="relative z-10 flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-start gap-8 overflow-x-hidden overflow-y-auto bg-ivory px-6 py-12 sm:justify-center"
     >
       <FadeIn className="flex flex-col items-center gap-3 text-center">
         <h2 className="font-display text-3xl italic text-charcoal">{copyV2.couple.title}</h2>

@@ -35,7 +35,7 @@ export function GalleryV2() {
   return (
     <section
       id="gallery"
-      className="flex h-screen shrink-0 snap-start flex-col items-center gap-8 overflow-y-auto bg-ivory-soft px-6 py-12"
+      className="flex h-dvh shrink-0 snap-start snap-always flex-col items-center gap-8 overflow-y-auto bg-ivory-soft px-6 py-12"
     >
       <FadeIn className="flex flex-col items-center gap-3 text-center">
         <h2 className="font-display text-3xl italic text-charcoal">{copyV2.gallery.title}</h2>

@@ -5,8 +5,11 @@ import { FadeIn } from "@/components/FadeIn";
 import { scriptFont } from "./fonts";
 
 export function HomeV2() {
+  const groomFirstName = weddingConfig.groom.fullName.split(" ")[0];
+  const brideFirstName = weddingConfig.bride.fullName.split(" ")[0];
+
   return (
-    <section id="home" className="relative flex h-screen shrink-0 snap-start flex-col items-center justify-center gap-8 overflow-y-auto px-6 py-20 text-center">
+    <section id="home" className="relative flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-8 overflow-hidden px-6 py-20 text-center">
       <Image src="/hero/BUD08507.jpg" alt="" fill priority className="object-cover" />
       <div className="absolute inset-0 bg-linear-to-b from-charcoal/75 via-charcoal/55 to-charcoal/80" />
 
@@ -15,9 +18,9 @@ export function HomeV2() {
           {copyV2.cover.kicker}
         </p>
         <div className={`${scriptFont.className} leading-[0.8] text-ivory`}>
-          <p className="text-5xl sm:text-6xl">{weddingConfig.groom.name}</p>
+          <p className="text-5xl sm:text-6xl">{groomFirstName}</p>
           <p className="-mt-2 text-2xl text-gold-light sm:text-3xl">&amp;</p>
-          <p className="-mt-2 text-5xl sm:text-6xl">{weddingConfig.bride.name}</p>
+          <p className="-mt-2 text-5xl sm:text-6xl">{brideFirstName}</p>
         </div>
         <p className="mt-2 text-xs tracking-[0.3em] text-ivory/70 uppercase">
           {weddingConfig.ceremony.dateLabel}

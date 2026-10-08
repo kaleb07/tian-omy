@@ -4,7 +4,7 @@ import { FadeIn } from "@/components/FadeIn";
 
 export function FooterV2() {
   return (
-    <footer className="flex h-screen shrink-0 snap-start flex-col items-center justify-center gap-6 overflow-y-auto bg-charcoal px-6 text-center text-ivory">
+    <footer className="flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-6 overflow-y-auto bg-charcoal px-6 text-center text-ivory">
       <FadeIn className="flex flex-col items-center gap-6">
         <p className="max-w-md text-sm leading-7 text-ivory/80">{copyV2.footer.closing}</p>
         <div className="flex flex-col items-center gap-1">

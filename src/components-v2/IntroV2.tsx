@@ -29,7 +29,7 @@ export function IntroV2({ finished, onFinish }: { finished: boolean; onFinish: (
   return (
     <div
       aria-hidden={finished}
-      className={`fixed inset-0 z-60 flex flex-col items-center justify-center gap-6 overflow-hidden bg-black px-6 text-center transition-opacity duration-1000 ease-in-out ${
+      className={`fixed inset-x-0 top-0 z-60 flex h-dvh flex-col items-center justify-center gap-6 overflow-hidden bg-black px-6 text-center transition-opacity duration-1000 ease-in-out ${
         finished ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >

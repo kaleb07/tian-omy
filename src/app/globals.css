@@ -69,3 +69,32 @@ body {
     transform: scale(1);
   }
 }
+
+@keyframes vinyl-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.vinyl-disc {
+  background:
+    radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.22), transparent 28%),
+    repeating-radial-gradient(
+      circle at center,
+      #0c0c0c 0px,
+      #141414 1px,
+      #1f1f1f 2px,
+      #0a0a0a 3px
+    );
+  animation: vinyl-spin 12s linear infinite;
+}
+
+.vinyl-disc.is-paused {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vinyl-disc {
+    animation: none;
+  }
+}

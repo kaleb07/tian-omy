@@ -20,7 +20,7 @@ export function CoverV2({
   return (
     <div
       aria-hidden={opened}
-      className={`fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-charcoal transition-all duration-1000 ease-in-out ${
+      className={`fixed inset-x-0 top-0 z-50 flex h-dvh items-center justify-center overflow-hidden bg-charcoal transition-all duration-1000 ease-in-out ${
         opened ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >

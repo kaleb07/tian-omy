@@ -33,7 +33,7 @@ export function GiftV2() {
   return (
     <section
       id="gift"
-      className="flex h-screen shrink-0 snap-start flex-col items-center justify-center gap-8 overflow-y-auto bg-ivory px-6 py-12"
+      className="flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-8 overflow-y-auto bg-ivory px-6 py-12"
     >
       <FadeIn className="flex flex-col items-center gap-3 text-center">
         <h2 className="font-display text-3xl italic text-charcoal">{copyV2.gift.title}</h2>

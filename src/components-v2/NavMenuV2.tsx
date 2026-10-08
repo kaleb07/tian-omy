@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   { href: "#couple", label: copyV2.nav.couple },
   { href: "#event", label: copyV2.nav.event },
   { href: "#rsvp", label: copyV2.nav.rsvp },
+  { href: "#wishes", label: copyV2.nav.wishes },
   { href: "#gallery", label: copyV2.nav.gallery },
   { href: "#gift", label: copyV2.nav.gift },
 ];
