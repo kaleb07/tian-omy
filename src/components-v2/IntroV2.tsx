@@ -33,7 +33,7 @@ export function IntroV2({ finished, onFinish }: { finished: boolean; onFinish: (
         finished ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >
-      <Image src="/background/BUD09046-Edit.jpg" alt="" fill priority className="object-cover" />
+      <Image src={weddingConfig.introBackground} alt="" fill priority className="object-cover" />
       <div className="absolute inset-0 bg-black/80" />
 
       <div className="relative flex h-24 w-full items-center justify-center overflow-hidden sm:h-28">
@@ -42,7 +42,7 @@ export function IntroV2({ finished, onFinish }: { finished: boolean; onFinish: (
             showNames ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
         >
-          <Image src="/letterName/letter-name.png" alt="" fill className="object-contain" />
+          <Image src={weddingConfig.letterName} alt="" fill className="object-contain" />
         </div>
       </div>
 

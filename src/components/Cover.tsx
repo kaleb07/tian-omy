@@ -20,7 +20,7 @@ export function Cover({
     >
       <div className="relative flex h-full w-full flex-col items-center justify-between overflow-y-auto overflow-x-hidden text-ivory lg:max-w-[50vw] lg:shadow-2xl">
         <Image
-          src="/cover/cover.jpg"
+          src={weddingConfig.coverPhoto}
           alt=""
           fill
           priority

@@ -10,7 +10,7 @@ export function HomeV2() {
 
   return (
     <section id="home" className="relative flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-8 overflow-hidden px-6 py-20 text-center">
-      <Image src="/hero/BUD08507.jpg" alt="" fill priority className="object-cover" />
+      <Image src={weddingConfig.homeHero} alt="" fill priority className="object-cover" />
       <div className="absolute inset-0 bg-linear-to-b from-charcoal/75 via-charcoal/55 to-charcoal/80" />
 
       <FadeIn className="relative flex flex-col items-center gap-2">

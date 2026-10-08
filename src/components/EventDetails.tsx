@@ -55,7 +55,7 @@ export function EventDetails() {
   return (
     <section className="flex flex-col lg:h-screen lg:flex-row">
       <div className="relative h-72 w-full sm:h-96 lg:h-full lg:w-1/2">
-        <Image src="/eventDetails/BUD08507.jpg" alt="" fill className="object-cover" />
+        <Image src={weddingConfig.eventDetailsPhoto} alt="" fill className="object-cover" />
       </div>
 
       <div className="flex w-full flex-col items-center justify-center gap-8 overflow-hidden bg-[#F4ECEA] px-6 py-12 lg:h-full lg:w-1/2 lg:gap-6 lg:py-6">

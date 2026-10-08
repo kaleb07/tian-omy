@@ -6,7 +6,7 @@ import { FadeIn } from "./FadeIn";
 export function Footer() {
   return (
     <footer className="relative flex h-screen flex-col items-center justify-end gap-6 overflow-hidden bg-charcoal px-6 pb-16 text-center text-ivory">
-      <Image src="/footer/BUD08632.jpg" alt="" fill className="object-cover" />
+      <Image src={weddingConfig.footerPhoto} alt="" fill className="object-cover" />
       <div className="absolute inset-0 bg-linear-to-b from-charcoal/80 via-charcoal/60 to-charcoal/85" />
 
       <div className="relative flex w-full max-w-md flex-col items-center gap-6">

@@ -40,13 +40,11 @@ function formatShortDate(iso: string) {
 
 function CountdownBox({ value, label }: { value: number; label: string }) {
   return (
-    <div className="flex w-14 flex-col items-center justify-center gap-0.5 rounded-lg border border-gold-light/40 bg-ivory px-2 py-2.5 shadow-sm sm:w-20 sm:gap-1 sm:px-3 sm:py-5">
-      <span className="font-display text-2xl text-charcoal sm:text-4xl" suppressHydrationWarning>
+    <div className="flex w-14 flex-col items-center justify-center gap-0.5 rounded-lg border border-gold-light/40 bg-ivory px-2 py-2.5 shadow-sm">
+      <span className="font-display text-2xl text-charcoal" suppressHydrationWarning>
         {String(value).padStart(2, "0")}
       </span>
-      <span className="text-[8px] tracking-[0.16em] text-charcoal/60 uppercase sm:text-[10px] sm:tracking-[0.2em]">
-        {label}
-      </span>
+      <span className="text-[8px] tracking-[0.16em] text-charcoal/60 uppercase">{label}</span>
     </div>
   );
 }
@@ -55,23 +53,18 @@ function EventCard({ event }: { event: EventDetail }) {
   const startIso = buildStartIso(weddingConfig.weddingDateISO, event.timeLabel);
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-1.5 rounded-lg border border-gold-light/50 bg-ivory px-4 py-4 text-center sm:h-auto sm:max-w-sm sm:gap-3 sm:px-8 sm:py-10">
-      <p className="text-[10px] tracking-[0.24em] text-gold uppercase sm:text-xs sm:tracking-[0.3em]">
-        {event.label}
-      </p>
-      <p className="hidden font-display text-xl text-charcoal sm:block">{event.dateLabel}</p>
-      <p className="text-xs text-charcoal/70 sm:text-sm">{event.timeLabel}</p>
-      <div className="my-0.5 h-px w-8 bg-gold-light sm:mt-2 sm:w-10" />
-      <p className="text-xs font-medium text-charcoal sm:mt-2 sm:text-sm">{event.venueName}</p>
-      <p className="max-w-xs text-[11px] leading-4 text-charcoal/70 sm:text-sm sm:leading-5">
-        {event.venueAddress}
-      </p>
-      <div className="mt-1 flex flex-wrap items-center justify-center gap-1.5 sm:mt-4 sm:gap-3">
+    <div className="flex h-full min-w-0 w-full flex-col items-center justify-center gap-1.5 overflow-hidden rounded-lg border border-gold-light/50 bg-ivory px-3 py-3 text-center">
+      <p className="text-[10px] tracking-[0.2em] text-gold uppercase">{event.label}</p>
+      <p className="text-xs text-charcoal/70">{event.timeLabel}</p>
+      <div className="h-px w-8 bg-gold-light" />
+      <p className="text-xs font-medium text-charcoal">{event.venueName}</p>
+      <p className="text-[11px] leading-4 text-charcoal/70">{event.venueAddress}</p>
+      <div className="mt-1 flex flex-wrap items-center justify-center gap-1.5">
         <a
           href={event.mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-full border border-gold px-3 py-1.5 text-[10px] tracking-[0.16em] text-gold uppercase transition-colors hover:bg-gold hover:text-ivory sm:px-5 sm:py-2 sm:text-xs sm:tracking-[0.2em]"
+          className="rounded-full border border-gold px-3 py-1.5 text-[10px] tracking-[0.12em] text-gold uppercase transition-colors hover:bg-gold hover:text-ivory"
         >
           {copyV2.event.mapButton}
         </a>
@@ -79,7 +72,7 @@ function EventCard({ event }: { event: EventDetail }) {
           href={buildCalendarUrl(event, startIso)}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-full border border-charcoal/30 px-3 py-1.5 text-[10px] tracking-[0.16em] text-charcoal uppercase transition-colors hover:bg-charcoal hover:text-ivory sm:px-5 sm:py-2 sm:text-xs sm:tracking-[0.2em]"
+          className="rounded-full border border-charcoal/30 px-3 py-1.5 text-[10px] tracking-[0.12em] text-charcoal uppercase transition-colors hover:bg-charcoal hover:text-ivory"
         >
           {copyV2.event.calendarButton}
         </a>
@@ -94,21 +87,19 @@ export function EventDetailsV2() {
   return (
     <section
       id="event"
-      className="relative z-10 flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-between gap-4 overflow-hidden bg-ivory-soft px-4 py-6 sm:justify-center sm:gap-8 sm:overflow-y-auto sm:px-6 sm:py-12"
+      className="relative z-10 flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-between gap-3 overflow-hidden bg-ivory-soft px-5 py-6"
     >
-      <FadeIn className="flex shrink-0 flex-col items-center gap-1 text-center sm:gap-3">
-        <h2 className="font-display text-2xl italic text-charcoal sm:text-3xl">{copyV2.event.title}</h2>
-        <p className="max-w-md text-xs text-charcoal/70 sm:text-sm">{copyV2.event.subtitle}</p>
+      <FadeIn className="flex shrink-0 flex-col items-center gap-1 text-center">
+        <h2 className="font-display text-2xl italic text-charcoal">{copyV2.event.title}</h2>
+        <p className="max-w-sm text-xs text-charcoal/70">{copyV2.event.subtitle}</p>
       </FadeIn>
 
-      <FadeIn className="flex shrink-0 flex-col items-center gap-2 sm:gap-6">
-        <p className="text-[10px] tracking-[0.24em] text-gold uppercase sm:text-xs sm:tracking-[0.3em]">
-          {copyV2.event.countdownTitle}
-        </p>
-        <p className="font-display text-2xl text-charcoal sm:text-5xl">
+      <FadeIn className="flex shrink-0 flex-col items-center gap-2">
+        <p className="text-[10px] tracking-[0.24em] text-gold uppercase">{copyV2.event.countdownTitle}</p>
+        <p className="font-display text-2xl text-charcoal">
           {formatShortDate(weddingConfig.weddingDateISO)}
         </p>
-        <div className="flex gap-2 sm:gap-4">
+        <div className="flex gap-2">
           <CountdownBox value={timeLeft.days} label={copyV2.event.days} />
           <CountdownBox value={timeLeft.hours} label={copyV2.event.hours} />
           <CountdownBox value={timeLeft.minutes} label={copyV2.event.minutes} />
@@ -116,11 +107,11 @@ export function EventDetailsV2() {
         </div>
       </FadeIn>
 
-      <div className="flex min-h-0 w-full flex-1 flex-col items-stretch gap-3 sm:flex-none sm:flex-row sm:items-stretch sm:justify-center sm:gap-8">
-        <FadeIn className="flex min-h-0 w-full flex-1 sm:w-auto sm:flex-none">
+      <div className="flex min-h-0 w-full min-w-0 flex-1 flex-col items-stretch gap-2.5">
+        <FadeIn className="flex min-h-0 min-w-0 w-full flex-1">
           <EventCard event={weddingConfig.ceremony} />
         </FadeIn>
-        <FadeIn className="flex min-h-0 w-full flex-1 sm:w-auto sm:flex-none">
+        <FadeIn className="flex min-h-0 min-w-0 w-full flex-1">
           <EventCard event={weddingConfig.reception} />
         </FadeIn>
       </div>

@@ -25,7 +25,7 @@ export function CoverV2({
       }`}
     >
       <div className="relative flex h-full w-full flex-col items-center overflow-y-auto overflow-x-hidden px-6 py-10 text-center text-ivory lg:max-w-[50vw] lg:shadow-2xl">
-        <Image src="/background/BUD07950.jpg" alt="" fill priority className="object-cover" />
+        <Image src={weddingConfig.coverBackground} alt="" fill priority className="object-cover" />
         <div className="absolute inset-0 bg-linear-to-b from-charcoal/80 via-charcoal/55 to-charcoal/85" />
 
         <div className="relative flex w-full flex-col items-center gap-2">
