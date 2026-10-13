@@ -9,7 +9,7 @@ export function HomeV2() {
   const brideFirstName = weddingConfig.bride.fullName.split(" ")[0];
 
   return (
-    <section id="home" className="relative flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-8 overflow-hidden px-6 py-20 text-center">
+    <section id="home" className="relative flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-between gap-8 overflow-hidden bg-charcoal px-6 py-20 text-center">
       <Image src={weddingConfig.homeHero} alt="" fill priority className="object-cover" />
       <div className="absolute inset-0 bg-linear-to-b from-charcoal/75 via-charcoal/55 to-charcoal/80" />
 

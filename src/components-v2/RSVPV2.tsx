@@ -1,11 +1,15 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import Image from "next/image";
+import { useEffect, useState, type FormEvent } from "react";
 import { copyV2 } from "@/lib/copy-v2";
 import { weddingConfig } from "@/lib/config";
+import { useSectionInView } from "./useSectionInView";
 
 type Attendance = "Yes" | "No" | "Maybe";
 type Status = "idle" | "submitting" | "success" | "error";
+
+const BACKGROUND_IMAGE_INTERVAL_MS = 6000;
 
 const ATTENDANCE_OPTIONS: { value: Attendance; label: string }[] = [
   { value: "Yes", label: copyV2.rsvp.attendanceYes },
@@ -20,6 +24,17 @@ export function RSVPV2({ guestName, onSubmitted }: { guestName: string; onSubmit
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [activeImage, setActiveImage] = useState(0);
+  const [cycle, setCycle] = useState(0);
+  const { ref, inView } = useSectionInView<HTMLElement>();
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveImage((prev) => (prev + 1) % weddingConfig.backgroundImages.length);
+      setCycle((c) => c + 1);
+    }, BACKGROUND_IMAGE_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -67,15 +82,42 @@ export function RSVPV2({ guestName, onSubmitted }: { guestName: string; onSubmit
   return (
     <section
       id="rsvp"
-      className="relative z-10 flex h-dvh shrink-0 snap-start snap-always flex-col overflow-hidden bg-ivory px-5 py-7 sm:px-6 sm:py-12"
+      ref={ref}
+      className="h-dvh shrink-0 snap-start snap-always overflow-hidden"
     >
-      <header className="shrink-0 pb-5 text-center">
-        <p className="text-[10px] tracking-[0.35em] text-gold uppercase">Konfirmasi</p>
-        <h2 className="mt-2 font-display text-3xl italic text-charcoal sm:text-4xl">{copyV2.rsvp.title}</h2>
-        <p className="mx-auto mt-2 max-w-xs text-xs leading-5 text-charcoal/70 sm:max-w-md sm:text-sm">
-          {copyV2.rsvp.subtitle}
-        </p>
-      </header>
+      <div
+        className={`fixed inset-y-0 right-0 w-full -z-10 transition-opacity duration-500 min-[1025px]:w-125 ${inView ? "opacity-100" : "opacity-0"}`}
+        aria-hidden="true"
+      >
+        {weddingConfig.backgroundImages.map((src, index) => {
+          const isActive = index === activeImage;
+          return (
+            <Image
+              key={isActive ? `${src}-${cycle}` : src}
+              src={src}
+              alt=""
+              fill
+              className={`object-cover grayscale ${isActive ? "opacity-100" : "opacity-0"}`}
+              style={{
+                transition: "opacity 1500ms ease-in-out",
+                animation: isActive
+                  ? `hero-zoom-out ${BACKGROUND_IMAGE_INTERVAL_MS}ms linear forwards`
+                  : "none",
+              }}
+            />
+          );
+        })}
+        <div className="absolute inset-0 bg-charcoal/55" />
+      </div>
+
+      <div className="relative z-10 flex h-full w-full flex-col px-5 py-7 sm:px-6 sm:py-12">
+        <header className="shrink-0 pb-5 text-center">
+          {/* <p className="text-[10px] tracking-[0.35em] text-gold-light uppercase">Konfirmasi</p> */}
+          <h2 className="mt-2 font-display text-3xl italic text-ivory">{copyV2.rsvp.title}</h2>
+          <p className="mx-auto mt-2 max-w-xs text-xs leading-5 text-ivory/80 sm:max-w-md sm:text-sm">
+            {copyV2.rsvp.subtitle}
+          </p>
+        </header>
 
       {status === "success" ? (
         <div className="flex min-h-0 flex-1 flex-col items-center justify-center rounded-2xl border border-gold-light/50 bg-ivory-soft px-6 text-center">
@@ -180,6 +222,7 @@ export function RSVPV2({ guestName, onSubmitted }: { guestName: string; onSubmit
           </button>
         </form>
       )}
+      </div>
     </section>
   );
 }

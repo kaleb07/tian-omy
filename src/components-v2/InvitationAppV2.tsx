@@ -72,7 +72,7 @@ export function InvitationAppV2() {
           <Image src={weddingConfig.coverPhoto} alt="" fill priority className="object-cover" />
         </div>
 
-        <div className="h-dvh w-full snap-y snap-mandatory overflow-y-scroll scroll-auto min-[1025px]:ml-auto min-[1025px]:w-125">
+        <div className="h-dvh w-full snap-y snap-proximity overflow-y-scroll scroll-auto min-[1025px]:ml-auto min-[1025px]:w-125">
           <HomeV2 />
           <CoupleV2 />
           <EventDetailsV2 />

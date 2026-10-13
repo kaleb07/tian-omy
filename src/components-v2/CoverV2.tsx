@@ -47,7 +47,7 @@ export function CoverV2({
         <div className="relative flex w-full flex-col items-center gap-3 pb-4">
           <p className="text-xs text-ivory/70">{copyV2.cover.to}</p>
           <p className="font-display text-xl italic text-ivory">{guestName}</p>
-          <p className="max-w-xs text-[11px] italic text-ivory/50">
+          <p className="whitespace-nowrap text-[10px] italic text-ivory/50">
             {copyV2.cover.disclaimer}
           </p>
           <button

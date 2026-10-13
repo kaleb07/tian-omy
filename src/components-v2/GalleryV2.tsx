@@ -20,9 +20,12 @@ function ArrowIcon({ direction }: { direction: "left" | "right" }) {
   );
 }
 
+const GRID_LIMIT = 9;
+
 export function GalleryV2() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const images = weddingConfig.gallery;
+  const gridImages = images.slice(0, GRID_LIMIT);
 
   function showPreviousImage() {
     setActiveIndex((prev) => (prev === null ? prev : (prev - 1 + images.length) % images.length));
@@ -43,12 +46,14 @@ export function GalleryV2() {
       </FadeIn>
 
       <FadeIn className="grid w-full max-w-3xl grid-cols-2 gap-3 sm:grid-cols-3">
-        {images.map((image, index) => (
+        {gridImages.map((image, index) => (
           <button
             key={image.src}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className="relative aspect-square overflow-hidden rounded-md border border-gold-light/40"
+            className={`relative aspect-square overflow-hidden rounded-md border border-gold-light/40 ${
+              index === 8 ? "hidden sm:block" : ""
+            }`}
           >
             <Image
               src={image.src}

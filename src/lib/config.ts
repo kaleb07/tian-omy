@@ -65,6 +65,11 @@ const cloudinaryGallery = {
   "BUD09238.jpg": "https://res.cloudinary.com/dnq9io0mf/image/upload/v1791476436/kristian-omy/gallery/BUD09238.jpg",
   "BUD09448.jpg": "https://res.cloudinary.com/dnq9io0mf/image/upload/v1791476403/kristian-omy/gallery/BUD09448.jpg",
   "cover.jpg": "https://res.cloudinary.com/dnq9io0mf/image/upload/v1791476389/kristian-omy/gallery/cover.jpg",
+  "BUD08594.jpg": "https://res.cloudinary.com/dnq9io0mf/image/upload/v1791881981/kristian-omy/BUD08594.jpg",
+  "BUD08091.jpg": "https://res.cloudinary.com/dnq9io0mf/image/upload/v1791881981/kristian-omy/BUD08091.jpg",
+  "BUD08295.jpg": "https://res.cloudinary.com/dnq9io0mf/image/upload/v1791881981/kristian-omy/BUD08295.jpg",
+  "BUD08564.jpg": "https://res.cloudinary.com/dnq9io0mf/image/upload/v1791881981/kristian-omy/BUD08564.jpg",
+  "BUD08632.jpg": "https://res.cloudinary.com/dnq9io0mf/image/upload/v1791882061/kristian-omy/BUD08632.jpg",
 } as const;
 
 // TODO: ganti seluruh nilai di bawah ini dengan data pernikahan sesungguhnya.
@@ -100,7 +105,7 @@ export const weddingConfig = {
   ceremony: {
     label: "Pemberkatan Nikah",
     dateLabel: "Sabtu, 7 November 2026",
-    timeLabel: "09.00 WIB – Selesai",
+    timeLabel: "10.00 WIB – Selesai",
     venueName: "Gereja GSRI Sipitupitu",
     venueAddress: "Narumonda VI, Siantar Narumonda, Toba, Sumatera Utara",
     mapsUrl: "https://maps.app.goo.gl/LzJUkwyZtwNw4nGQ9",
@@ -109,7 +114,7 @@ export const weddingConfig = {
   reception: {
     label: "Resepsi",
     dateLabel: "Sabtu, 7 November 2026",
-    timeLabel: "11.30 WIB – Selesai",
+    timeLabel: "13.00 WIB – Selesai",
     venueName: "Gereja GSRI Sipitupitu",
     venueAddress: "Narumonda VI, Siantar Narumonda, Toba, Sumatera Utara",
     mapsUrl: "https://maps.app.goo.gl/LzJUkwyZtwNw4nGQ9",
@@ -128,6 +133,7 @@ export const weddingConfig = {
   coverBackground: cloudinaryBackground["BUD07950.jpg"],
   eventDetailsPhoto: cloudinaryEventDetails["BUD08507.jpg"],
   footerPhoto: cloudinaryFooter["BUD08632.jpg"],
+  footerBackgroundV2: cloudinaryGallery["BUD08745-Edit.jpg"],
   introBackground: cloudinaryBackground["BUD09046-Edit.jpg"],
   letterName: cloudinaryLetterName["letter-name.png"],
   backgroundImages: [
@@ -146,6 +152,11 @@ export const weddingConfig = {
     { src: cloudinaryGallery["BUD09201.jpg"], alt: "Foto 6" },
     { src: cloudinaryGallery["BUD09238.jpg"], alt: "Foto 7" },
     { src: cloudinaryGallery["BUD09448.jpg"], alt: "Foto 8" },
+    { src: cloudinaryGallery["BUD08594.jpg"], alt: "Foto 9" },
+    { src: cloudinaryGallery["BUD08091.jpg"], alt: "Foto 10" },
+    { src: cloudinaryGallery["BUD08295.jpg"], alt: "Foto 11" },
+    { src: cloudinaryGallery["BUD08564.jpg"], alt: "Foto 12" },
+    { src: cloudinaryGallery["BUD08632.jpg"], alt: "Foto 13" },
   ] satisfies GalleryImage[],
   galleryCover: cloudinaryGallery["cover.jpg"],
 

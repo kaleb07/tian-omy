@@ -39,7 +39,8 @@ export const copyV2 = {
   },
   rsvp: {
     title: "RSVP",
-    subtitle: "Mohon konfirmasi kehadiran Anda pada hari bahagia kami",
+    subtitle:
+      "Dengan hormat, kami memohon kesediaan Anda untuk segera mengonfirmasi kehadiran pada acara kami. Bersamaan dengan konfirmasi kehadiran, kami juga mengundang Anda untuk menyampaikan salam hangat dan doa terbaik bagi kami.",
     nameLabel: "Nama",
     namePlaceholder: "Nama lengkap Anda",
     guestCountLabel: "Jumlah Tamu",
@@ -62,6 +63,7 @@ export const copyV2 = {
     subtitle: "Doa dan ucapan dari para tamu undangan",
     loadingMessage: "Memuat ucapan...",
     emptyMessage: "Belum ada ucapan. Jadilah yang pertama mengirimkan doa restu!",
+    sendMessageButton: "Kirim Ucapan",
     errorMessage: "Gagal memuat ucapan.",
     notConfiguredMessage: "Ucapan belum terhubung ke spreadsheet. Set APPS_SCRIPT_URL di .env.local, lalu restart server.",
     prevButton: "← Sebelumnya",
@@ -80,8 +82,18 @@ export const copyV2 = {
     accountNumberLabel: "Nomor Rekening",
     copyButton: "Salin",
     copiedButton: "Tersalin",
+    sendGiftButton: "Kirim Hadiah",
+    closeButton: "Tutup",
   },
   footer: {
+    gratitude: [
+      { text: "Dengan " },
+      { text: "rasa syukur yang tulus", highlight: true },
+      { text: " atas " },
+      { text: "kehadiran", highlight: true },
+      { text: " dan " },
+      { text: "doa restu Anda", highlight: true },
+    ],
     closing:
       "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.",
     signature: "Kami yang berbahagia,",
