@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import { InvitationApp } from "@/components/InvitationApp";
+import { InvitationAppV2 } from "@/components-v2/InvitationAppV2";
 
 export default function Home() {
   return (
     <Suspense fallback={null}>
-      <InvitationApp />
+      <InvitationAppV2 />
     </Suspense>
   );
 }

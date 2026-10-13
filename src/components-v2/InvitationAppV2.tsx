@@ -14,6 +14,7 @@ import { RSVPV2 } from "./RSVPV2";
 import { WishesV2 } from "./WishesV2";
 import { GalleryV2 } from "./GalleryV2";
 import { GiftV2 } from "./GiftV2";
+import { QuotesV2 } from "./QuotesV2";
 import { FooterV2 } from "./FooterV2";
 import { MusicDiscV2 } from "./MusicDiscV2";
 
@@ -68,11 +69,11 @@ export function InvitationAppV2() {
       )}
 
       <div className="min-[1025px]:flex min-[1025px]:min-h-dvh">
-        <div className="hidden min-[1025px]:fixed min-[1025px]:inset-y-0 min-[1025px]:left-0 min-[1025px]:right-125 min-[1025px]:block">
+        <div className="hidden min-[1025px]:fixed min-[1025px]:inset-y-0 min-[1025px]:left-0 min-[1025px]:right-125 min-[1025px]:z-99 min-[1025px]:block">
           <Image src={weddingConfig.coverPhoto} alt="" fill priority className="object-cover" />
         </div>
 
-        <div className="h-dvh w-full snap-y snap-proximity overflow-y-scroll scroll-auto min-[1025px]:ml-auto min-[1025px]:w-125">
+        <div className="isolate z-1 h-dvh w-full snap-y snap-proximity overflow-y-scroll scroll-auto bg-charcoal min-[1025px]:ml-auto min-[1025px]:w-125">
           <HomeV2 />
           <CoupleV2 />
           <EventDetailsV2 />
@@ -80,6 +81,7 @@ export function InvitationAppV2() {
           <WishesV2 refreshKey={wishesRefreshKey} />
           <GalleryV2 />
           <GiftV2 />
+          <QuotesV2 />
           <FooterV2 />
         </div>
       </div>

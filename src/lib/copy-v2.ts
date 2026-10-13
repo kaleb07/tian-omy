@@ -12,13 +12,14 @@ export const copyV2 = {
     kicker: "The Wedding Of",
     to: "Yth. Bapak/Ibu/Saudara/i:",
     defaultGuest: "Bapak/Ibu/Saudara/i",
-    disclaimer: "Mohon maaf apabila terdapat kesalahan penulisan nama dan gelar.",
+    disclaimer:
+      "Mohon maaf apabila terdapat kesalahan penulisan nama dan gelar.",
     openButton: "Buka Undangan",
   },
   home: {
     quote:
-      "“Kasih itu sabar; kasih itu murah hati; ia tidak cemburu. Ia tidak memegahkan diri dan tidak sombong.”",
-    quoteSource: "1 Korintus 13:4",
+      "“Ia membuat segala sesuatu indah pada waktunya, bahkan Ia memberikan kekekalan dalam hati mereka.”",
+    quoteSource: "Pengkhotbah 3:11",
   },
   couple: {
     title: "Groom & Bride",
@@ -62,10 +63,12 @@ export const copyV2 = {
     title: "Ucapan & Doa",
     subtitle: "Doa dan ucapan dari para tamu undangan",
     loadingMessage: "Memuat ucapan...",
-    emptyMessage: "Belum ada ucapan. Jadilah yang pertama mengirimkan doa restu!",
+    emptyMessage:
+      "Belum ada ucapan. Jadilah yang pertama mengirimkan doa restu!",
     sendMessageButton: "Kirim Ucapan",
     errorMessage: "Gagal memuat ucapan.",
-    notConfiguredMessage: "Ucapan belum terhubung ke spreadsheet. Set APPS_SCRIPT_URL di .env.local, lalu restart server.",
+    notConfiguredMessage:
+      "Ucapan belum terhubung ke spreadsheet. Set APPS_SCRIPT_URL di .env.local, lalu restart server.",
     prevButton: "← Sebelumnya",
     nextButton: "Berikutnya →",
   },
@@ -84,6 +87,21 @@ export const copyV2 = {
     copiedButton: "Tersalin",
     sendGiftButton: "Kirim Hadiah",
     closeButton: "Tutup",
+  },
+  quotes: {
+    title: "Words",
+    verses: [
+      {
+        quote:
+          "Anak-anakku, marilah kita mengasihi bukan dengan perkataan atau dengan lidah, tetapi dengan perbuatan dan dalam kebenaran.",
+        source: "1 Yohanes 3:18",
+      },
+      {
+        quote:
+          "Dan di atas semuanya itu: kenakanlah kasih, sebagai pengikat yang mempersatukan dan menyempurnakan.",
+        source: "Kolose 3:14",
+      },
+    ],
   },
   footer: {
     gratitude: [

@@ -5,7 +5,7 @@ import { weddingConfig } from "@/lib/config";
 
 function PlayGlyph() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 translate-x-px" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3 translate-x-px" aria-hidden="true">
       <path d="M8 5.5v13l11-6.5-11-6.5z" />
     </svg>
   );
@@ -23,7 +23,7 @@ export function MusicDiscV2({
       type="button"
       onClick={onToggle}
       aria-label={isPlaying ? "Jeda musik" : "Putar musik"}
-      className="fixed right-5 bottom-6 z-40 h-20 w-20 rounded-full shadow-[0_10px_28px_rgba(59,50,44,0.35)]"
+      className="fixed right-5 bottom-6 z-40 h-14 w-14 rounded-full shadow-[0_10px_28px_rgba(59,50,44,0.35)]"
     >
       <span
         className={`vinyl-disc absolute inset-0 overflow-hidden rounded-full ${

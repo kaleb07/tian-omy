@@ -99,18 +99,13 @@ export function GiftV2() {
             className="flex w-full max-w-md flex-col gap-4"
             style={{ animation: "zoom-in-pop 400ms ease-out forwards" }}
           >
-            {weddingConfig.bankAccounts.map((account) => (
+            {weddingConfig.bankAccounts.slice(1, 2).map((account) => (
               <div
                 key={account.accountNumber}
                 className="flex flex-col items-center gap-2 rounded-lg border border-gold-light/50 bg-ivory-soft px-6 py-6 text-center"
               >
-                <div className="relative h-8 w-24">
-                  <Image
-                    src={`/image/bank/${account.bank}.jpg`}
-                    alt={account.bank}
-                    fill
-                    className="object-contain"
-                  />
+                <div className="relative h-16 w-16">
+                  <Image src={account.logo} alt={account.bank} fill className="object-contain" />
                 </div>
                 <p className="font-display text-2xl text-charcoal">{account.accountNumber}</p>
                 <p className="text-sm text-charcoal/70">a.n. {account.accountHolder}</p>
