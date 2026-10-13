@@ -104,16 +104,8 @@ export const copyV2 = {
     ],
   },
   footer: {
-    gratitude: [
-      { text: "Dengan " },
-      { text: "rasa syukur yang tulus", highlight: true },
-      { text: " atas " },
-      { text: "kehadiran", highlight: true },
-      { text: " dan " },
-      { text: "doa restu Anda", highlight: true },
-    ],
     closing:
-      "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.",
+      "Kehadiran serta doa restu dari Bapak/Ibu/Saudara/i akan menjadi kebahagiaan dan kenangan yang berharga bagi kami dalam mengawali perjalanan hidup bersama.\n\nTerima kasih atas perhatian dan doa baik yang diberikan.",
     signature: "Kami yang berbahagia,",
   },
 };

@@ -131,7 +131,7 @@ export function EventDetailsV2() {
         <div className="absolute inset-0 bg-charcoal/55" />
       </div>
 
-      <div className="relative z-10 flex h-full w-full flex-col items-center justify-between gap-3 overflow-y-auto px-5 pt-12 pb-6">
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-between gap-3 overflow-hidden px-5 pt-6 pb-6">
         <FadeIn className="flex shrink-0 flex-col items-center gap-1 text-center">
           <h2 className="font-display text-3xl italic text-ivory">{copyV2.event.title}</h2>
           <p className="max-w-sm text-xs text-ivory/80">{copyV2.event.subtitle}</p>
