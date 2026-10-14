@@ -35,8 +35,8 @@ export function FooterV2() {
         </FadeIn>
       </div>
 
-      <div className="absolute bottom-0 left-0 z-10">
-        <div className="flex items-center justify-center bg-ivory px-2 py-1">
+      <div className="absolute inset-x-0 bottom-0 z-10 flex w-full justify-center">
+        <div className="flex w-full items-center justify-center bg-ivory px-2 py-1">
           <div className="relative h-4.5 w-16">
             <Image src="/image/logo/logo-public.png" alt="" fill className="object-contain" />
           </div>

@@ -108,7 +108,7 @@ export function GiftV2() {
       className="h-dvh shrink-0 snap-start snap-always overflow-hidden"
     >
       <div
-        className={`fixed inset-y-0 right-0 w-full -z-10 transition-opacity duration-500 min-[1025px]:w-125 ${inView ? "opacity-100" : "opacity-0"}`}
+        className={`fixed inset-y-0 right-0 w-full -z-10 transition-opacity duration-500 min-[1025px]:w-125 ${inView ? "opacity-100" : "opacity-50"}`}
         aria-hidden="true"
       >
         {weddingConfig.backgroundImages.map((src, index) => {

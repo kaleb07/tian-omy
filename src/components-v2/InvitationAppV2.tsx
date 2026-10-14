@@ -57,6 +57,7 @@ export function InvitationAppV2() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const isAutoScrollingRef = useRef(false);
+  const isHoldingRef = useRef(false);
   const gestureStartRef = useRef<number | null>(null);
   const scrollEndTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -134,13 +135,38 @@ export function InvitationAppV2() {
       if (gestureStartRef.current === null) {
         gestureStartRef.current = node.scrollTop;
       }
+      // While the user is actively holding a touch (finger down), the position
+      // just follows the drag — don't schedule a commit until they let go.
+      if (isHoldingRef.current) return;
+      if (scrollEndTimeoutRef.current) clearTimeout(scrollEndTimeoutRef.current);
+      scrollEndTimeoutRef.current = setTimeout(commitSnap, SCROLL_END_DEBOUNCE_MS);
+    }
+
+    function handleTouchStart() {
+      isHoldingRef.current = true;
+      if (scrollEndTimeoutRef.current) {
+        clearTimeout(scrollEndTimeoutRef.current);
+        scrollEndTimeoutRef.current = null;
+      }
+    }
+
+    function handleTouchEnd() {
+      isHoldingRef.current = false;
+      // Finger lifted — fall through to the normal debounce, which also covers
+      // any momentum/inertia scrolling that continues after release.
       if (scrollEndTimeoutRef.current) clearTimeout(scrollEndTimeoutRef.current);
       scrollEndTimeoutRef.current = setTimeout(commitSnap, SCROLL_END_DEBOUNCE_MS);
     }
 
     node.addEventListener("scroll", handleScroll, { passive: true });
+    node.addEventListener("touchstart", handleTouchStart, { passive: true });
+    node.addEventListener("touchend", handleTouchEnd, { passive: true });
+    node.addEventListener("touchcancel", handleTouchEnd, { passive: true });
     return () => {
       node.removeEventListener("scroll", handleScroll);
+      node.removeEventListener("touchstart", handleTouchStart);
+      node.removeEventListener("touchend", handleTouchEnd);
+      node.removeEventListener("touchcancel", handleTouchEnd);
       if (scrollEndTimeoutRef.current) clearTimeout(scrollEndTimeoutRef.current);
     };
   }, []);
