@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { copyV2 } from "@/lib/copy-v2";
 import { weddingConfig } from "@/lib/config";
+import { FadeIn } from "@/components/FadeIn";
 import { useSectionInView } from "./useSectionInView";
 
 type WishMessage = {
@@ -112,13 +113,16 @@ export function WishesV2({ refreshKey = 0 }: { refreshKey?: number }) {
 
       <div className="relative z-10 flex h-full w-full flex-col px-5 py-7 sm:px-6 sm:py-12">
         <header className="shrink-0 pb-5 text-center">
-          {/* <p className="text-[10px] tracking-[0.35em] text-gold-light uppercase">Guestbook</p> */}
-          <h2 className="mt-2 font-display text-3xl italic text-ivory">{copyV2.wishes.title}</h2>
-          <p className="mx-auto mt-2 max-w-xs text-xs leading-5 text-ivory/80 sm:max-w-md sm:text-sm">
-            {copyV2.wishes.subtitle}
-          </p>
+          <FadeIn className="flex flex-col items-center gap-1">
+            {/* <p className="text-[10px] tracking-[0.35em] text-gold-light uppercase">Guestbook</p> */}
+            <h2 className="mt-2 font-display text-3xl italic text-ivory">{copyV2.wishes.title}</h2>
+            <p className="mx-auto mt-2 max-w-xs text-xs leading-5 text-ivory/80 sm:max-w-md sm:text-sm">
+              {copyV2.wishes.subtitle}
+            </p>
+          </FadeIn>
         </header>
 
+        <FadeIn className="flex min-h-0 w-full flex-1 flex-col">
         <div
           className={`flex h-auto max-h-dvh min-h-0 flex-col overflow-hidden rounded-2xl border border-gold-light/40 bg-ivory ${isEmpty ? "min-h-72" : ""}`}
         >
@@ -173,7 +177,7 @@ export function WishesV2({ refreshKey = 0 }: { refreshKey?: number }) {
                   type="button"
                   onClick={() => setPage((p) => Math.max(0, p - 1))}
                   disabled={page === 0}
-                  className="text-xs tracking-[0.1em] text-gold uppercase disabled:opacity-30"
+                  className="text-xs tracking-widest text-gold uppercase disabled:opacity-30"
                 >
                   {copyV2.wishes.prevButton}
                 </button>
@@ -184,7 +188,7 @@ export function WishesV2({ refreshKey = 0 }: { refreshKey?: number }) {
                   type="button"
                   onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
                   disabled={page === totalPages - 1}
-                  className="text-xs tracking-[0.1em] text-gold uppercase disabled:opacity-30"
+                  className="text-xs tracking-widest text-gold uppercase disabled:opacity-30"
                 >
                   {copyV2.wishes.nextButton}
                 </button>
@@ -193,6 +197,7 @@ export function WishesV2({ refreshKey = 0 }: { refreshKey?: number }) {
           </>
         )}
       </div>
+      </FadeIn>
       </div>
     </section>
   );

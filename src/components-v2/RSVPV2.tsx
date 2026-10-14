@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState, type FormEvent } from "react";
 import { copyV2 } from "@/lib/copy-v2";
 import { weddingConfig } from "@/lib/config";
+import { FadeIn } from "@/components/FadeIn";
 import { useSectionInView } from "./useSectionInView";
 
 type Attendance = "Yes" | "No" | "Maybe";
@@ -112,14 +113,17 @@ export function RSVPV2({ guestName, onSubmitted }: { guestName: string; onSubmit
 
       <div className="relative z-10 flex h-full w-full flex-col px-5 py-7 sm:px-6 sm:py-12">
         <header className="shrink-0 pb-5 text-center">
-          {/* <p className="text-[10px] tracking-[0.35em] text-gold-light uppercase">Konfirmasi</p> */}
-          <h2 className="mt-2 font-display text-3xl italic text-ivory">{copyV2.rsvp.title}</h2>
-          <p className="mx-auto mt-2 max-w-xs text-xs leading-5 text-ivory/80 sm:max-w-md sm:text-sm">
-            {copyV2.rsvp.subtitle}
-          </p>
+          <FadeIn className="flex flex-col items-center gap-1">
+            {/* <p className="text-[10px] tracking-[0.35em] text-gold-light uppercase">Konfirmasi</p> */}
+            <h2 className="mt-2 font-display text-3xl italic text-ivory">{copyV2.rsvp.title}</h2>
+            <p className="mx-auto mt-2 max-w-xs text-xs leading-5 text-ivory/80 sm:max-w-md sm:text-sm">
+              {copyV2.rsvp.subtitle}
+            </p>
+          </FadeIn>
         </header>
 
       {status === "success" ? (
+        <FadeIn className="flex min-h-0 w-full flex-1 flex-col">
         <div className="flex min-h-0 flex-1 flex-col items-center justify-center rounded-2xl border border-gold-light/50 bg-ivory-soft px-6 text-center">
           <p className="font-display text-2xl italic text-charcoal">{copyV2.rsvp.successTitle}</p>
           <p className="mt-2 max-w-xs text-sm text-charcoal/70">{copyV2.rsvp.successMessage}</p>
@@ -131,7 +135,9 @@ export function RSVPV2({ guestName, onSubmitted }: { guestName: string; onSubmit
             {copyV2.rsvp.resetButton}
           </button>
         </div>
+        </FadeIn>
       ) : (
+        <FadeIn className="flex min-h-0 w-full flex-1 flex-col">
         <form
           onSubmit={handleSubmit}
           className="flex min-h-0 flex-1 flex-col gap-4 rounded-2xl border border-gold-light/40 bg-ivory-soft p-5 sm:gap-5 sm:p-8"
@@ -221,6 +227,7 @@ export function RSVPV2({ guestName, onSubmitted }: { guestName: string; onSubmit
             {status === "submitting" ? copyV2.rsvp.submittingButton : copyV2.rsvp.submitButton}
           </button>
         </form>
+        </FadeIn>
       )}
       </div>
     </section>

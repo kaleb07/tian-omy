@@ -34,50 +34,6 @@ function CopyButtonV2({ value }: { value: string }) {
   );
 }
 
-function CopyIconButton({ value }: { value: string }) {
-  const [copied, setCopied] = useState(false);
-
-  async function handleCopy() {
-    try {
-      await navigator.clipboard.writeText(value);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // Clipboard API unavailable (e.g. insecure context) — silently ignore.
-    }
-  }
-
-  return (
-    <button
-      type="button"
-      onClick={handleCopy}
-      aria-label={copied ? copyV2.gift.copiedButton : copyV2.gift.copyButton}
-      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-gold transition-colors hover:bg-gold/10"
-    >
-      {copied ? (
-        <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
-          <path
-            d="M5 13l4 4L19 7"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      ) : (
-        <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
-          <rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.8" />
-          <path
-            d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"
-            stroke="currentColor"
-            strokeWidth="1.8"
-          />
-        </svg>
-      )}
-    </button>
-  );
-}
-
 export function GiftV2() {
   const [showAccounts, setShowAccounts] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -95,7 +51,9 @@ export function GiftV2() {
 
   useEffect(() => {
     const id = setInterval(() => {
-      setActiveImage((prev) => (prev + 1) % weddingConfig.backgroundImages.length);
+      setActiveImage(
+        (prev) => (prev + 1) % weddingConfig.backgroundImages.length,
+      );
       setCycle((c) => c + 1);
     }, BACKGROUND_IMAGE_INTERVAL_MS);
     return () => clearInterval(id);
@@ -105,7 +63,7 @@ export function GiftV2() {
     <section
       id="gift"
       ref={ref}
-      className="h-dvh shrink-0 snap-start snap-always overflow-hidden"
+      className="min-h-dvh shrink-0 snap-start snap-always"
     >
       <div
         className={`fixed inset-y-0 right-0 w-full -z-10 transition-opacity duration-500 min-[1025px]:w-125 ${inView ? "opacity-100" : "opacity-50"}`}
@@ -132,10 +90,14 @@ export function GiftV2() {
         <div className="absolute inset-0 bg-charcoal/55" />
       </div>
 
-      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-8 overflow-y-auto px-6 py-12">
+      <div className="relative z-10 flex min-h-dvh w-full flex-col items-center justify-center gap-8 px-6 py-12">
         <FadeIn className="flex flex-col items-center gap-3 text-center">
-          <h2 className="font-display text-3xl italic text-ivory">{copyV2.gift.title}</h2>
-          <p className="max-w-md text-sm text-ivory/80">{copyV2.gift.subtitle}</p>
+          <h2 className="font-display text-3xl italic text-ivory">
+            {copyV2.gift.title}
+          </h2>
+          <p className="max-w-md text-sm text-ivory/80">
+            {copyV2.gift.subtitle}
+          </p>
         </FadeIn>
 
         {!showAccounts ? (
@@ -163,13 +125,21 @@ export function GiftV2() {
                 className="flex flex-col items-center gap-2 rounded-lg border border-gold-light/50 bg-ivory-soft px-6 py-6 text-center"
               >
                 <div className="relative h-16 w-16">
-                  <Image src={account.logo} alt={account.bank} fill className="object-contain" />
+                  <Image
+                    src={account.logo}
+                    alt={account.bank}
+                    fill
+                    className="object-contain"
+                  />
                 </div>
                 <div className="flex items-center gap-1">
-                  <p className="font-display text-2xl text-charcoal">{account.accountNumber}</p>
-                  <CopyIconButton value={account.accountNumber} />
+                  <p className="font-display text-2xl text-charcoal">
+                    {account.accountNumber}
+                  </p>
                 </div>
-                <p className="text-sm text-charcoal/70">a.n. {account.accountHolder}</p>
+                <p className="text-sm text-charcoal/70">
+                  a.n. {account.accountHolder}
+                </p>
                 <div className="mt-2">
                   <CopyButtonV2 value={account.accountNumber} />
                 </div>

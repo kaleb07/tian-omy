@@ -18,34 +18,6 @@ import { QuotesV2 } from "./QuotesV2";
 import { FooterV2 } from "./FooterV2";
 import { MusicDiscV2 } from "./MusicDiscV2";
 
-const SCROLL_COMMIT_THRESHOLD = 0.3;
-const SCROLL_END_DEBOUNCE_MS = 150;
-const SNAP_ANIMATION_DURATION_MS = 450;
-
-function animateScrollTop(node: HTMLDivElement, target: number, duration: number, onDone: () => void) {
-  const start = node.scrollTop;
-  const delta = target - start;
-  if (Math.abs(delta) < 1) {
-    onDone();
-    return;
-  }
-  const startTime = performance.now();
-
-  function step(now: number) {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    node.scrollTop = start + delta * eased;
-    if (progress < 1) {
-      requestAnimationFrame(step);
-    } else {
-      onDone();
-    }
-  }
-
-  requestAnimationFrame(step);
-}
-
 export function InvitationAppV2() {
   const searchParams = useSearchParams();
   const toParam = searchParams.get("to");
@@ -56,10 +28,7 @@ export function InvitationAppV2() {
   const [wishesRefreshKey, setWishesRefreshKey] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
-  const isAutoScrollingRef = useRef(false);
-  const isHoldingRef = useRef(false);
-  const gestureStartRef = useRef<number | null>(null);
-  const scrollEndTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isPlayingRef = useRef(false);
 
   useEffect(() => {
     document.body.style.overflow = opened ? "auto" : "hidden";
@@ -69,106 +38,27 @@ export function InvitationAppV2() {
   }, [opened]);
 
   useEffect(() => {
-    const node = scrollerRef.current;
-    if (!node) return;
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
 
-    function getSnapPoints() {
-      if (!node) return [];
-      // Skip children hidden by responsive classes (offsetHeight 0) so a section
-      // that renders a different number of visible children per breakpoint
-      // (e.g. split mobile-only sections) doesn't break the ascending order.
-      return Array.from(node.children)
-        .filter((child) => (child as HTMLElement).offsetHeight > 0)
-        .map((child) => (child as HTMLElement).offsetTop);
-    }
+  useEffect(() => {
+    if (!weddingConfig.music.enabled) return;
 
-    function goTo(target: number) {
-      if (!node) return;
-      if (Math.abs(target - node.scrollTop) < 1) return;
-      isAutoScrollingRef.current = true;
-      animateScrollTop(node, target, SNAP_ANIMATION_DURATION_MS, () => {
-        isAutoScrollingRef.current = false;
-      });
-    }
-
-    function commitSnap() {
-      if (!node || isAutoScrollingRef.current) return;
-
-      const snapPoints = getSnapPoints();
-      if (snapPoints.length === 0) return;
-
-      const scrollTop = node.scrollTop;
-      const gestureStart = gestureStartRef.current ?? scrollTop;
-      gestureStartRef.current = null;
-
-      const direction = scrollTop > gestureStart + 0.5 ? 1 : scrollTop < gestureStart - 0.5 ? -1 : 0;
-
-      // Bracket the current position between whichever two sections it actually
-      // sits between — robust even after a fast scroll through several sections.
-      let idxBelow = 0;
-      for (let i = 0; i < snapPoints.length; i += 1) {
-        if (snapPoints[i] <= scrollTop + 0.5) idxBelow = i;
-        else break;
-      }
-      const idxAbove = Math.min(idxBelow + 1, snapPoints.length - 1);
-
-      if (idxBelow === idxAbove) {
-        goTo(snapPoints[idxBelow]);
-        return;
-      }
-
-      const gap = snapPoints[idxAbove] - snapPoints[idxBelow];
-
-      // Measure progress from whichever side the gesture approached from, so the
-      // 40% threshold applies symmetrically for scrolling down and scrolling up.
-      if (direction < 0) {
-        const fraction = gap > 0 ? (snapPoints[idxAbove] - scrollTop) / gap : 0;
-        goTo(fraction >= SCROLL_COMMIT_THRESHOLD ? snapPoints[idxBelow] : snapPoints[idxAbove]);
-      } else {
-        const fraction = gap > 0 ? (scrollTop - snapPoints[idxBelow]) / gap : 0;
-        goTo(fraction >= SCROLL_COMMIT_THRESHOLD ? snapPoints[idxAbove] : snapPoints[idxBelow]);
+    // Pause whenever the tab/window isn't the one the user is looking at (switched
+    // tabs, minimized, screen locked) — resume only if music was actually playing
+    // before it went out of view, never force-starting it from a paused state.
+    function handleVisibilityChange() {
+      const audio = audioRef.current;
+      if (!audio) return;
+      if (document.hidden) {
+        audio.pause();
+      } else if (isPlayingRef.current) {
+        audio.play().catch(() => {});
       }
     }
 
-    function handleScroll() {
-      if (!node || isAutoScrollingRef.current) return;
-      if (gestureStartRef.current === null) {
-        gestureStartRef.current = node.scrollTop;
-      }
-      // While the user is actively holding a touch (finger down), the position
-      // just follows the drag — don't schedule a commit until they let go.
-      if (isHoldingRef.current) return;
-      if (scrollEndTimeoutRef.current) clearTimeout(scrollEndTimeoutRef.current);
-      scrollEndTimeoutRef.current = setTimeout(commitSnap, SCROLL_END_DEBOUNCE_MS);
-    }
-
-    function handleTouchStart() {
-      isHoldingRef.current = true;
-      if (scrollEndTimeoutRef.current) {
-        clearTimeout(scrollEndTimeoutRef.current);
-        scrollEndTimeoutRef.current = null;
-      }
-    }
-
-    function handleTouchEnd() {
-      isHoldingRef.current = false;
-      // Finger lifted — fall through to the normal debounce, which also covers
-      // any momentum/inertia scrolling that continues after release.
-      if (scrollEndTimeoutRef.current) clearTimeout(scrollEndTimeoutRef.current);
-      scrollEndTimeoutRef.current = setTimeout(commitSnap, SCROLL_END_DEBOUNCE_MS);
-    }
-
-    node.addEventListener("scroll", handleScroll, { passive: true });
-    node.addEventListener("touchstart", handleTouchStart, { passive: true });
-    node.addEventListener("touchend", handleTouchEnd, { passive: true });
-    node.addEventListener("touchcancel", handleTouchEnd, { passive: true });
-    return () => {
-      node.removeEventListener("scroll", handleScroll);
-      node.removeEventListener("touchstart", handleTouchStart);
-      node.removeEventListener("touchend", handleTouchEnd);
-      node.removeEventListener("touchcancel", handleTouchEnd);
-      if (scrollEndTimeoutRef.current) clearTimeout(scrollEndTimeoutRef.current);
-    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
   }, []);
 
   function handleOpen() {
@@ -211,7 +101,7 @@ export function InvitationAppV2() {
 
         <div
           ref={scrollerRef}
-          className="isolate z-1 h-dvh w-full overflow-y-scroll scroll-auto bg-charcoal min-[1025px]:ml-auto min-[1025px]:w-125"
+          className="isolate z-1 h-dvh w-full snap-y snap-mandatory overflow-y-scroll scroll-smooth bg-charcoal min-[1025px]:ml-auto min-[1025px]:w-125"
         >
           <HomeV2 />
           <CoupleV2 />

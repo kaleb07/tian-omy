@@ -26,7 +26,7 @@ export function QuotesV2() {
     <section
       id="quotes"
       ref={ref}
-      className="h-dvh shrink-0 snap-start snap-always overflow-hidden"
+      className="min-h-dvh shrink-0 snap-start snap-always"
     >
       <div
         className={`fixed inset-y-0 right-0 w-full -z-10 transition-opacity duration-500 min-[1025px]:w-125 ${inView ? "opacity-100" : "opacity-50"}`}
@@ -53,7 +53,7 @@ export function QuotesV2() {
         <div className="absolute inset-0 bg-charcoal/55" />
       </div>
 
-      <div className="relative z-10 flex h-full w-full flex-col items-center justify-between overflow-y-auto px-6 pt-16 pb-16 text-center text-ivory">
+      <div className="relative z-10 flex min-h-dvh w-full flex-col items-center justify-between px-6 pt-16 pb-16 text-center text-ivory">
         <FadeIn>
           <h2 className="font-display text-3xl italic text-ivory">{copyV2.quotes.title}</h2>
         </FadeIn>

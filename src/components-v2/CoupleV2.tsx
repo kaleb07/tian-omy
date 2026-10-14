@@ -46,7 +46,7 @@ export function CoupleV2() {
     <>
       <section
         id="couple-groom"
-        className="relative z-10 flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-6 overflow-y-auto bg-ivory px-6 py-10 min-[1025px]:hidden"
+        className="relative z-10 flex min-h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-5 bg-ivory px-6 py-8 min-[1025px]:hidden"
       >
         <FadeIn className="flex flex-col items-center gap-3 text-center">
           <h2 className="font-display text-3xl italic text-charcoal">{copyV2.couple.title}</h2>
@@ -59,7 +59,7 @@ export function CoupleV2() {
 
       <section
         id="couple-bride"
-        className="relative z-10 flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-6 overflow-y-auto bg-ivory px-6 py-10 min-[1025px]:hidden"
+        className="relative z-10 flex min-h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-5 bg-ivory px-6 py-8 min-[1025px]:hidden"
       >
         <FadeIn>
           <PersonCard label={copyV2.couple.brideLabel} person={weddingConfig.bride} />

@@ -10,7 +10,7 @@ export function FooterV2() {
   const brideFirstName = weddingConfig.bride.fullName.split(" ")[0];
 
   return (
-    <footer className="relative h-dvh shrink-0 snap-start snap-always overflow-hidden">
+    <footer className="relative min-h-dvh shrink-0 snap-start snap-always">
       <div className="absolute inset-0 -z-10" aria-hidden="true">
         <Image
           src={weddingConfig.footerBackgroundV2}
@@ -21,7 +21,7 @@ export function FooterV2() {
         <div className="absolute inset-0 bg-charcoal/55" />
       </div>
 
-      <div className="relative z-10 flex h-full w-full flex-col items-center justify-end gap-6 overflow-y-auto px-6 pb-16 text-center text-ivory">
+      <div className="relative z-10 flex min-h-dvh w-full flex-col items-center justify-end gap-6 px-6 pb-16 text-center text-ivory">
         <FadeIn className="flex flex-col items-center gap-6">
           <p className="max-w-md text-sm leading-7 whitespace-pre-line text-ivory/80">
             {copyV2.footer.closing}
