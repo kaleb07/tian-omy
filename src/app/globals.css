@@ -70,6 +70,17 @@ body {
   }
 }
 
+@keyframes zoom-out-pop {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+
 @keyframes vinyl-spin {
   to {
     transform: rotate(360deg);

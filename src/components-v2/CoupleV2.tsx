@@ -43,23 +43,47 @@ function PersonCard({ label, person }: { label: string; person: Person }) {
 
 export function CoupleV2() {
   return (
-    <section
-      id="couple"
-      className="relative z-10 flex min-h-dvh shrink-0 snap-start snap-always flex-col items-center justify-start gap-8 overflow-x-hidden bg-ivory px-6 py-12 sm:justify-center"
-    >
-      <FadeIn className="flex flex-col items-center gap-3 text-center">
-        <h2 className="font-display text-3xl italic text-charcoal">{copyV2.couple.title}</h2>
-        <p className="max-w-md text-sm text-charcoal/70">{copyV2.couple.subtitle}</p>
-      </FadeIn>
-
-      <div className="flex w-full max-w-4xl flex-col items-center gap-8 sm:flex-row sm:items-start sm:justify-center sm:gap-10">
+    <>
+      <section
+        id="couple-groom"
+        className="relative z-10 flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-6 overflow-y-auto bg-ivory px-6 py-10 min-[1025px]:hidden"
+      >
+        <FadeIn className="flex flex-col items-center gap-3 text-center">
+          <h2 className="font-display text-3xl italic text-charcoal">{copyV2.couple.title}</h2>
+          <p className="max-w-md text-sm text-charcoal/70">{copyV2.couple.subtitle}</p>
+        </FadeIn>
         <FadeIn>
           <PersonCard label={copyV2.couple.groomLabel} person={weddingConfig.groom} />
         </FadeIn>
+      </section>
+
+      <section
+        id="couple-bride"
+        className="relative z-10 flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-6 overflow-y-auto bg-ivory px-6 py-10 min-[1025px]:hidden"
+      >
         <FadeIn>
           <PersonCard label={copyV2.couple.brideLabel} person={weddingConfig.bride} />
         </FadeIn>
-      </div>
-    </section>
+      </section>
+
+      <section
+        id="couple"
+        className="relative z-10 hidden h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-8 overflow-x-hidden bg-ivory px-6 py-12 min-[1025px]:flex"
+      >
+        <FadeIn className="flex flex-col items-center gap-3 text-center">
+          <h2 className="font-display text-3xl italic text-charcoal">{copyV2.couple.title}</h2>
+          <p className="max-w-md text-sm text-charcoal/70">{copyV2.couple.subtitle}</p>
+        </FadeIn>
+
+        <div className="flex w-full max-w-4xl flex-col items-center gap-8 sm:flex-row sm:items-start sm:justify-center sm:gap-10">
+          <FadeIn>
+            <PersonCard label={copyV2.couple.groomLabel} person={weddingConfig.groom} />
+          </FadeIn>
+          <FadeIn>
+            <PersonCard label={copyV2.couple.brideLabel} person={weddingConfig.bride} />
+          </FadeIn>
+        </div>
+      </section>
+    </>
   );
 }

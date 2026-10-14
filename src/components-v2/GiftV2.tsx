@@ -8,6 +8,7 @@ import { FadeIn } from "@/components/FadeIn";
 import { useSectionInView } from "./useSectionInView";
 
 const BACKGROUND_IMAGE_INTERVAL_MS = 6000;
+const CLOSE_ANIMATION_DURATION_MS = 300;
 
 function CopyButtonV2({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
@@ -33,11 +34,64 @@ function CopyButtonV2({ value }: { value: string }) {
   );
 }
 
+function CopyIconButton({ value }: { value: string }) {
+  const [copied, setCopied] = useState(false);
+
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard API unavailable (e.g. insecure context) — silently ignore.
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      aria-label={copied ? copyV2.gift.copiedButton : copyV2.gift.copyButton}
+      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-gold transition-colors hover:bg-gold/10"
+    >
+      {copied ? (
+        <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
+          <path
+            d="M5 13l4 4L19 7"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
+          <rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.8" />
+          <path
+            d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          />
+        </svg>
+      )}
+    </button>
+  );
+}
+
 export function GiftV2() {
   const [showAccounts, setShowAccounts] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
   const [cycle, setCycle] = useState(0);
   const { ref, inView } = useSectionInView<HTMLElement>();
+
+  function handleClose() {
+    setIsClosing(true);
+    setTimeout(() => {
+      setShowAccounts(false);
+      setIsClosing(false);
+    }, CLOSE_ANIMATION_DURATION_MS);
+  }
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -97,7 +151,11 @@ export function GiftV2() {
         ) : (
           <div
             className="flex w-full max-w-md flex-col gap-4"
-            style={{ animation: "zoom-in-pop 400ms ease-out forwards" }}
+            style={{
+              animation: isClosing
+                ? `zoom-out-pop ${CLOSE_ANIMATION_DURATION_MS}ms ease-in forwards`
+                : "zoom-in-pop 400ms ease-out forwards",
+            }}
           >
             {weddingConfig.bankAccounts.slice(1, 2).map((account) => (
               <div
@@ -107,7 +165,10 @@ export function GiftV2() {
                 <div className="relative h-16 w-16">
                   <Image src={account.logo} alt={account.bank} fill className="object-contain" />
                 </div>
-                <p className="font-display text-2xl text-charcoal">{account.accountNumber}</p>
+                <div className="flex items-center gap-1">
+                  <p className="font-display text-2xl text-charcoal">{account.accountNumber}</p>
+                  <CopyIconButton value={account.accountNumber} />
+                </div>
                 <p className="text-sm text-charcoal/70">a.n. {account.accountHolder}</p>
                 <div className="mt-2">
                   <CopyButtonV2 value={account.accountNumber} />
@@ -116,7 +177,7 @@ export function GiftV2() {
             ))}
             <button
               type="button"
-              onClick={() => setShowAccounts(false)}
+              onClick={handleClose}
               className="mx-auto mt-2 text-xs tracking-[0.2em] text-ivory uppercase underline underline-offset-4"
             >
               {copyV2.gift.closeButton}

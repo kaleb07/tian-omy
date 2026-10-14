@@ -1,4 +1,8 @@
 export const copyV2 = {
+  meta: {
+    title: "Kristian & Naomy Wedding Invitation",
+    description: "Undangan pernikahan Kristian & Naomy",
+  },
   nav: {
     home: "Home",
     couple: "Groom & Bride",
