@@ -191,6 +191,7 @@ export const weddingConfig = {
     { src: cloudinaryGallery["BUD08632.jpg"], alt: "Foto 13" },
   ] satisfies GalleryImage[],
   galleryCover: cloudinaryGallery["cover.jpg"],
+  galleryVideo: "https://res.cloudinary.com/dnq9io0mf/video/upload/v1792073412/kristian-omy/Kristian_1.mp4",
 
   bankAccounts: [
     {

@@ -53,7 +53,13 @@ function ArrowIcon({ direction }: { direction: "left" | "right" }) {
   );
 }
 
-export function GalleryV2() {
+export function GalleryV2({
+  onVideoPlay,
+  onVideoEnd,
+}: {
+  onVideoPlay?: () => void;
+  onVideoEnd?: () => void;
+}) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -126,14 +132,14 @@ export function GalleryV2() {
   return (
     <section
       id="gallery"
-      className="flex h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-6 overflow-hidden bg-ivory-soft px-6 py-10"
+      className="flex h-dvh shrink-0 snap-start snap-always flex-col items-center gap-4 overflow-hidden bg-ivory-soft px-6 py-6"
     >
-      <FadeIn className="flex flex-col items-center gap-2 text-center">
+      <FadeIn className="flex shrink-0 flex-col items-center gap-2 text-center">
         <h2 className="font-display text-3xl italic text-charcoal">{copyV2.gallery.title}</h2>
         <p className="text-sm text-charcoal/70">{copyV2.gallery.subtitle}</p>
       </FadeIn>
 
-      <FadeIn className="w-full max-w-sm sm:max-w-xl">
+      <FadeIn className="w-full max-w-sm shrink-0 sm:max-w-xl">
         <div
           ref={scrollerRef}
           onScroll={updateProgress}
@@ -152,7 +158,7 @@ export function GalleryV2() {
             return (
               <div
                 key={`${columnIndex}-${column.map((image) => image.src).join("-")}`}
-                className={`flex h-96 shrink-0 gap-3 sm:h-112 ${
+                className={`flex h-56 shrink-0 gap-3 sm:h-64 ${
                   isPair ? "w-44 flex-col sm:w-56" : "w-60 sm:w-72"
                 }`}
               >
@@ -179,7 +185,7 @@ export function GalleryV2() {
           })}
         </div>
 
-        <div className="mt-4 flex items-center justify-center gap-4">
+        <div className="mt-3 flex items-center justify-center gap-4">
           <button
             type="button"
             aria-label={copyV2.gallery.prevButton}
@@ -204,6 +210,21 @@ export function GalleryV2() {
           >
             <ArrowIcon direction="right" />
           </button>
+        </div>
+      </FadeIn>
+
+      <FadeIn className="flex min-h-0 w-full max-w-sm flex-1 flex-col sm:max-w-xl">
+        <div className="relative min-h-0 w-full flex-1 overflow-hidden rounded-md border border-gold-light/40 bg-charcoal">
+          <video
+            src={weddingConfig.galleryVideo}
+            controls
+            playsInline
+            preload="metadata"
+            onPlay={onVideoPlay}
+            onPause={onVideoEnd}
+            onEnded={onVideoEnd}
+            className="h-full w-full object-contain"
+          />
         </div>
       </FadeIn>
 

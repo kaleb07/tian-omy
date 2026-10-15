@@ -83,6 +83,19 @@ export function InvitationAppV2() {
     }
   }
 
+  // Duck the background music for the gallery video, the same way it's
+  // ducked when the tab goes out of view — pause without touching `isPlaying`
+  // (the user's actual intent), then only resume if that intent was still "on".
+  function pauseMusicForVideo() {
+    audioRef.current?.pause();
+  }
+
+  function resumeMusicAfterVideo() {
+    if (isPlayingRef.current) {
+      audioRef.current?.play().catch(() => {});
+    }
+  }
+
   return (
     <>
       {weddingConfig.music.enabled && (
@@ -108,7 +121,7 @@ export function InvitationAppV2() {
           <EventDetailsV2 />
           <RSVPV2 guestName={guestName} onSubmitted={() => setWishesRefreshKey((key) => key + 1)} />
           <WishesV2 refreshKey={wishesRefreshKey} />
-          <GalleryV2 />
+          <GalleryV2 onVideoPlay={pauseMusicForVideo} onVideoEnd={resumeMusicAfterVideo} />
           <GiftV2 />
           <QuotesV2 />
           <FooterV2 />
