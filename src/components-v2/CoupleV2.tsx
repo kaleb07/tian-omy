@@ -20,10 +20,20 @@ type Person = {
   instagram: string;
 };
 
-function PersonCard({ label, person }: { label: string; person: Person }) {
+function PersonCard({
+  label,
+  person,
+  imageClassName = "aspect-3/4 w-full",
+}: {
+  label: string;
+  person: Person;
+  imageClassName?: string;
+}) {
   return (
     <div className="flex w-full max-w-sm flex-col items-center gap-4 text-center">
-      <div className="relative aspect-3/4 w-full overflow-hidden rounded-t-full border border-gold-light/40">
+      <div
+        className={`relative overflow-hidden rounded-t-full border border-gold-light/40 ${imageClassName}`}
+      >
         <Image src={person.photo} alt={person.fullName} fill className="object-cover" />
       </div>
       <p className="text-xs tracking-[0.3em] text-gold uppercase">{label}</p>
@@ -46,14 +56,18 @@ export function CoupleV2() {
     <>
       <section
         id="couple-groom"
-        className="relative z-10 flex min-h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-5 bg-ivory px-6 py-8 min-[1025px]:hidden"
+        className="relative z-10 flex min-h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-4 bg-ivory px-6 py-6 min-[1025px]:hidden"
       >
-        <FadeIn className="flex flex-col items-center gap-3 text-center">
+        <FadeIn className="flex flex-col items-center gap-2 text-center">
           <h2 className="font-display text-3xl italic text-charcoal">{copyV2.couple.title}</h2>
           <p className="max-w-md text-sm text-charcoal/70">{copyV2.couple.subtitle}</p>
         </FadeIn>
         <FadeIn>
-          <PersonCard label={copyV2.couple.groomLabel} person={weddingConfig.groom} />
+          <PersonCard
+            label={copyV2.couple.groomLabel}
+            person={weddingConfig.groom}
+            imageClassName="aspect-3/4 h-[34dvh] max-h-72 w-auto"
+          />
         </FadeIn>
       </section>
 
@@ -62,7 +76,11 @@ export function CoupleV2() {
         className="relative z-10 flex min-h-dvh shrink-0 snap-start snap-always flex-col items-center justify-center gap-5 bg-ivory px-6 py-8 min-[1025px]:hidden"
       >
         <FadeIn>
-          <PersonCard label={copyV2.couple.brideLabel} person={weddingConfig.bride} />
+          <PersonCard
+            label={copyV2.couple.brideLabel}
+            person={weddingConfig.bride}
+            imageClassName="aspect-3/4 h-[34dvh] max-h-72 w-auto"
+          />
         </FadeIn>
       </section>
 

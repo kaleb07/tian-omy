@@ -43,6 +43,16 @@ body {
   color: var(--foreground);
 }
 
+/* Below the desktop split-layout breakpoint, the page itself scrolls (instead
+   of a nested div) so the browser's own scroll position actually changes —
+   this is what lets mobile browsers auto-hide their address bar on scroll. */
+@media (max-width: 1024px) {
+  html,
+  body {
+    scroll-snap-type: y mandatory;
+  }
+}
+
 .no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
