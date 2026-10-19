@@ -23,7 +23,7 @@ export function MusicDiscV2({
       type="button"
       onClick={onToggle}
       aria-label={isPlaying ? "Jeda musik" : "Putar musik"}
-      className="fixed bottom-2 left-5 z-40 h-14 w-14 rounded-full shadow-[0_10px_28px_rgba(59,50,44,0.35)]"
+      className="fixed top-5 right-5 z-40 h-14 w-14 rounded-full shadow-[0_10px_28px_rgba(59,50,44,0.35)]"
     >
       <span
         className={`vinyl-disc absolute inset-0 overflow-hidden rounded-full ${

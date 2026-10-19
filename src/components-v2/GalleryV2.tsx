@@ -8,6 +8,7 @@ import { weddingConfig, type GalleryImage } from "@/lib/config";
 import { FadeIn } from "@/components/FadeIn";
 
 const AUTOSCROLL_PX_PER_SECOND = 40;
+const TOUCH_SAFETY_TIMEOUT_MS = 4000;
 
 function chunkColumns(images: GalleryImage[]) {
   const columns: GalleryImage[][] = [];
@@ -65,6 +66,7 @@ export function GalleryV2({
   const scrollerRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const touchSafetyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const images = weddingConfig.gallery;
   const columns = chunkColumns(images);
   const loopColumns = [...columns, ...columns];
@@ -121,6 +123,24 @@ export function GalleryV2({
     pausedRef.current = false;
   }
 
+  function handleTouchStart() {
+    pause();
+    if (touchSafetyTimeoutRef.current) clearTimeout(touchSafetyTimeoutRef.current);
+    // Safety net: some mobile browsers (notably iOS) don't reliably fire
+    // touchend on this element when a touch here turns into a vertical page
+    // scroll instead of a horizontal swipe — without this, autoscroll would
+    // stay paused forever after a single such touch.
+    touchSafetyTimeoutRef.current = setTimeout(resume, TOUCH_SAFETY_TIMEOUT_MS);
+  }
+
+  function handleTouchEnd() {
+    if (touchSafetyTimeoutRef.current) {
+      clearTimeout(touchSafetyTimeoutRef.current);
+      touchSafetyTimeoutRef.current = null;
+    }
+    resume();
+  }
+
   function showPreviousImage() {
     setActiveIndex((prev) => (prev === null ? prev : (prev - 1 + images.length) % images.length));
   }
@@ -145,8 +165,9 @@ export function GalleryV2({
           onScroll={updateProgress}
           onMouseEnter={pause}
           onMouseLeave={resume}
-          onTouchStart={pause}
-          onTouchEnd={resume}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
           className="no-scrollbar flex w-full gap-3 overflow-x-auto pb-2"
         >
           {loopColumns.map((column, columnIndex) => {
@@ -214,7 +235,7 @@ export function GalleryV2({
       </FadeIn>
 
       <FadeIn className="flex min-h-0 w-full max-w-sm flex-1 flex-col sm:max-w-xl">
-        <div className="relative min-h-0 w-full flex-1 overflow-hidden rounded-md border border-gold-light/40 bg-charcoal">
+        <div className="relative min-h-0 w-full flex-1 max-h-[42dvh] overflow-hidden rounded-md border border-gold-light/40 bg-charcoal sm:max-h-96">
           <video
             src={weddingConfig.galleryVideo}
             controls

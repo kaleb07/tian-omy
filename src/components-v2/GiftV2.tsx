@@ -119,7 +119,7 @@ export function GiftV2() {
                 : "zoom-in-pop 400ms ease-out forwards",
             }}
           >
-            {weddingConfig.bankAccounts.slice(1, 2).map((account) => (
+            {weddingConfig.bankAccounts.slice(1).map((account) => (
               <div
                 key={account.accountNumber}
                 className="flex flex-col items-center gap-2 rounded-lg border border-gold-light/50 bg-ivory-soft px-6 py-6 text-center"

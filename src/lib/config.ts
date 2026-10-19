@@ -206,6 +206,12 @@ export const weddingConfig = {
       accountHolder: "Naomy Simanungkalit",
       logo: "/image/bank/Jago.png",
     },
+    {
+      bank: "BCA",
+      accountNumber: "8630114951",
+      accountHolder: "Kristian Dwi Hartono Putro",
+      logo: "/image/bank/BCA.png",
+    },
   ] satisfies BankAccount[],
 
   music: {
