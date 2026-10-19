@@ -64,7 +64,7 @@ export const copyV2 = {
     notConfiguredMessage: "Formulir RSVP belum aktif. Silakan coba lagi nanti.",
   },
   wishes: {
-    title: "Ucapan & Doa",
+    title: "Wishes & Blessings",
     subtitle: "Doa dan ucapan dari para tamu undangan",
     loadingMessage: "Memuat ucapan...",
     emptyMessage:
