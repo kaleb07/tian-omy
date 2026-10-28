@@ -71,6 +71,16 @@ export function InvitationAppV2() {
         .then(() => setIsPlaying(true))
         .catch(() => {});
     }
+
+    // Go fullscreen on mobile so the browser's own address bar can't
+    // auto-hide/show while scrolling — desktop never has this toolbar
+    // behavior, so it's left untouched there. iOS Safari/Chrome don't
+    // reliably support the Fullscreen API, so this silently no-ops there,
+    // which is fine since the address bar staying visible is what's wanted
+    // on iOS anyway.
+    if (window.innerWidth < 1025) {
+      document.documentElement.requestFullscreen?.().catch(() => {});
+    }
   }
 
   function toggleMusic() {

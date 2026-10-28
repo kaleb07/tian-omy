@@ -212,16 +212,6 @@ export const weddingConfig = {
       ],
     },
     {
-      title: "Building Relationships",
-      body: "Seiring berjalannya waktu, kebersamaan kami mengajarkan arti saling memahami, mendukung, dan bertumbuh bersama dalam suka maupun duka.",
-      highlight:
-        "Dari sekadar teman menjadi tempat pulang. Kami belajar untuk saling menerima kekurangan dan mensyukuri setiap kebersamaan.",
-      images: [
-        "https://res.cloudinary.com/pexmn9ro/image/upload/v1793194126/story_two_03.png",
-        "https://res.cloudinary.com/pexmn9ro/image/upload/v1793194129/story_two_01.png",
-      ],
-    },
-    {
       title: "Marriage Proposal",
       body: "Dengan keyakinan dan restu keluarga, kami melangkah ke tahap yang lebih serius melalui acara lamaran pada pertengah tahun 2026 (Mei) sebagai tanda komitmen untuk masa depan bersama.",
       highlight:
