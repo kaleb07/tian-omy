@@ -43,6 +43,22 @@ body {
   color: var(--foreground);
 }
 
+/* On mobile, Android Chrome's address bar auto-hides/shows as the user
+   scrolls, which makes 100dvh recalculate mid-gesture and visually jank
+   every full-height section (snap points shifting, content jumping). Lock
+   mobile full-height sections to the smallest/stable viewport height
+   (100svh, i.e. as if the toolbar is always shown) so nothing resizes while
+   scrolling, regardless of what the browser's own chrome does. */
+@media (max-width: 1024px) {
+  .h-dvh {
+    height: 100svh;
+  }
+
+  .min-h-dvh {
+    min-height: 100svh;
+  }
+}
+
 .no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
