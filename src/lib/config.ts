@@ -19,6 +19,13 @@ export type GalleryImage = {
   alt: string;
 };
 
+export type LoveStoryItem = {
+  title: string;
+  body: string;
+  highlight?: string;
+  images: string[];
+};
+
 const cloudinaryBackground = {
   "BUD07950.jpg":
     "https://res.cloudinary.com/dnq9io0mf/image/upload/v1791476280/kristian-omy/background/BUD07950.jpg",
@@ -192,6 +199,47 @@ export const weddingConfig = {
   ] satisfies GalleryImage[],
   galleryCover: cloudinaryGallery["cover.jpg"],
   galleryVideo: "https://res.cloudinary.com/dnq9io0mf/video/upload/v1792073412/kristian-omy/Kristian_1.mp4",
+
+  loveStory: [
+    {
+      title: "First Meet",
+      body: "Tahun 2019 menjadi awal pertemuan kami. Dari sebuah perkenalan sederhana di salah satu gereja di surabaya, kami mulai mengenal satu sama lain dan menjalin komunikasi yang semakin dekat. Di dalam pelayanan maupun di luar pelayanan gereja.",
+      highlight:
+        "Tidak ada yang kebetulan di dunia ini. Pertemuan kami yang sederhana ternyata menjadi awal dari perjalanan panjang yang indah.",
+      images: [
+        "https://res.cloudinary.com/pexmn9ro/image/upload/v1793194120/story_one_01.png",
+        "https://res.cloudinary.com/pexmn9ro/image/upload/v1793194134/story_one_03.png",
+      ],
+    },
+    {
+      title: "Building Relationships",
+      body: "Seiring berjalannya waktu, kebersamaan kami mengajarkan arti saling memahami, mendukung, dan bertumbuh bersama dalam suka maupun duka.",
+      highlight:
+        "Dari sekadar teman menjadi tempat pulang. Kami belajar untuk saling menerima kekurangan dan mensyukuri setiap kebersamaan.",
+      images: [
+        "https://res.cloudinary.com/pexmn9ro/image/upload/v1793194126/story_two_03.png",
+        "https://res.cloudinary.com/pexmn9ro/image/upload/v1793194129/story_two_01.png",
+      ],
+    },
+    {
+      title: "Marriage Proposal",
+      body: "Dengan keyakinan dan restu keluarga, kami melangkah ke tahap yang lebih serius melalui acara lamaran pada pertengah tahun 2026 (Mei) sebagai tanda komitmen untuk masa depan bersama.",
+      highlight:
+        "Dari sekedar teman hingga menjadi tempat pulang. Kami belajar untuk saling menerima kekurangan dan mensyukuri setiap kebersamaan.",
+      images: [
+        "https://res.cloudinary.com/pexmn9ro/image/upload/v1793194129/story_three_02.png",
+      ],
+    },
+    {
+      title: "Our Wedding Journey",
+      body: "Setelah melewati berbagai cerita dan perjalanan selama kurang lebih 7 tahun, kami memutuskan untuk mengikat janji suci pernikahan dan memulai babak baru sebagai pasangan hidup.",
+      highlight: "Kini, kami siap mengucapkan janji suci dan memulai kehidupan baru sebagai suami dan istri.",
+      images: [
+        "https://res.cloudinary.com/pexmn9ro/image/upload/v1793194122/story_four_01.png",
+        "https://res.cloudinary.com/pexmn9ro/image/upload/v1793194126/story_four_02.png",
+      ],
+    },
+  ] satisfies LoveStoryItem[],
 
   bankAccounts: [
     {

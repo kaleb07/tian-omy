@@ -152,7 +152,7 @@ export function RSVPV2({ guestName, onSubmitted }: { guestName: string; onSubmit
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder={copyV2.rsvp.namePlaceholder}
-              className="h-12 rounded-xl border border-gold-light/60 bg-ivory px-4 text-sm text-charcoal outline-none focus:border-gold"
+              className="h-12 rounded-xl border border-gold-light/60 bg-ivory px-4 text-base text-charcoal outline-none focus:border-gold"
             />
           </label>
 
@@ -213,7 +213,7 @@ export function RSVPV2({ guestName, onSubmitted }: { guestName: string; onSubmit
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder={copyV2.rsvp.messagePlaceholder}
-              className="min-h-0 flex-1 resize-none rounded-xl border border-gold-light/60 bg-ivory px-4 py-3 text-sm leading-6 text-charcoal outline-none focus:border-gold"
+              className="min-h-0 flex-1 resize-none rounded-xl border border-gold-light/60 bg-ivory px-4 py-3 text-base leading-6 text-charcoal outline-none focus:border-gold"
             />
           </label>
 

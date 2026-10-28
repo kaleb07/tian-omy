@@ -76,6 +76,12 @@ export const copyV2 = {
     prevButton: "← Sebelumnya",
     nextButton: "Berikutnya →",
   },
+  loveStory: {
+    title: "Love Story",
+    subtitle: "Perjalanan kisah kasih kami",
+    prevButton: "Kisah sebelumnya",
+    nextButton: "Kisah berikutnya",
+  },
   gallery: {
     title: "Gallery",
     subtitle: "Sepenggal cerita kami",

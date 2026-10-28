@@ -9,6 +9,7 @@ import { IntroV2 } from "./IntroV2";
 import { CoverV2 } from "./CoverV2";
 import { HomeV2 } from "./HomeV2";
 import { CoupleV2 } from "./CoupleV2";
+import { LoveStoryV2 } from "./LoveStoryV2";
 import { EventDetailsV2 } from "./EventDetailsV2";
 import { RSVPV2 } from "./RSVPV2";
 import { WishesV2 } from "./WishesV2";
@@ -121,6 +122,7 @@ export function InvitationAppV2() {
           <EventDetailsV2 />
           <RSVPV2 guestName={guestName} onSubmitted={() => setWishesRefreshKey((key) => key + 1)} />
           <WishesV2 refreshKey={wishesRefreshKey} />
+          <LoveStoryV2 />
           <GalleryV2 onVideoPlay={pauseMusicForVideo} onVideoEnd={resumeMusicAfterVideo} />
           <GiftV2 />
           <QuotesV2 />
