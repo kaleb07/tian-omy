@@ -87,7 +87,12 @@ export function LoveStoryV2() {
             <FadeIn className="shrink-0">
               <p className="mx-auto max-w-md text-center text-sm leading-6 text-charcoal/70">
                 {story.body}
-                {story.highlight && <> {story.highlight}</>}
+                {story.highlight && (
+                  <>
+                    {" "}
+                    <span className="font-bold">{story.highlight}</span>
+                  </>
+                )}
               </p>
             </FadeIn>
           </div>
