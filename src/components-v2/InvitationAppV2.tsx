@@ -126,6 +126,7 @@ export function InvitationAppV2() {
         <div
           ref={scrollerRef}
           className="isolate z-1 h-dvh w-full snap-y snap-mandatory overflow-y-scroll scroll-smooth bg-charcoal min-[1025px]:ml-auto min-[1025px]:w-125"
+          // className="isolate z-1 h-dvh w-full snap-y snap-proximity overflow-y-scroll scroll-smooth bg-charcoal min-[1025px]:ml-auto min-[1025px]:w-125 min-[1025px]:snap-mandatory"
         >
           <HomeV2 />
           <CoupleV2 />
